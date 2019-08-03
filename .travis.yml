@@ -3,7 +3,7 @@ language: python
 python:
   - "3.7"
 install:
-    - pip3 install -r requirements.txt
+    - pip3 install --user -r requirements.txt
 before_deploy:
     - rm -rf build
     - mkdir build
