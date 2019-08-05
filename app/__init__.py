@@ -1,16 +1,12 @@
 from flask import Flask
 import os
 from flask_sqlalchemy import SQLAlchemy
-import awsgi
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('flask.cfg')
 db = SQLAlchemy(app)
 
 from app import routes
-
-def lambda_handler(event, context):
-    return awsgi.response(app, event, context)
 
 if app.config["DEBUG"]:
     from app.models.news import News

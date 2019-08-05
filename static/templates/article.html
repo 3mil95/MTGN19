@@ -1,8 +1,0 @@
-<a href="/nyheter" data-navigo>Tillbaka till alla nyheter</a>
-<h1 class="news-title">{{article.headline}}</h1>
-<p class="news-subtitle">Av {{article.author.type.name}}-{{article.author.name}}<br />{{formatDate article.timestamp}}</p>
-{{#if isAdmin}}
-<a href="/admin/redigera_nyhet/{{article.id}}" data-navigo>Redigera artikel</a>
-<br />
-{{/if}}
-<p class="news-text">{{{article.text}}}</p>
