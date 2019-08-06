@@ -218,7 +218,8 @@ class Profile extends Component {
                 <img className='profile-img' src={profile.profile_picture} alt=""/>*/}
                 </div>
                 {/* buttons */}
-                {(profile.username == "foppe") ? <button onClick={this.foppesKnapp} style={{ fontFamily: "comicsans", color: "rgb(255, 51, 136)" }}>Comic sans?</button> : null}
+                {// eslint-disable-next-line
+                  (profile.username == "foppe") ? <button onClick={this.foppesKnapp} style={{ fontFamily: "comicsans", color: "rgb(255, 51, 136)" }}>Comic sans?</button> : null}
                 <div className='profile-button-contaner'>
                   {prev !== -1 ? (
                     <button

@@ -40,7 +40,6 @@
     padding: 2px;
     padding-top: 5px;
     top: 5px;
-    width: fit-content;
 }
 
 .small_lada .bubbel {
@@ -85,7 +84,7 @@
         padding-right: 9px;
         padding-top: 5px;
         top: 0px;
-        width: 35px;
+        /*width: 35px;*/
         height: 35px;
     }
 }

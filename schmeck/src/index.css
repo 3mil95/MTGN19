@@ -19,8 +19,8 @@
 
 body {
   background: rgb(51, 7, 7);
-  background-image: url("https://wallpaperbro.com/img/434513.jpg");
-  background-size: fill;
+  background-image: url("desk-website-background.jpg");
+  background-size: cover;
 
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -36,10 +36,12 @@ body {
   font-family: tw;
 }*/
 
-code {
+
+  /*code {
   /*font-family: monospace, source-code-pro, Menlo, Monaco, Consolas,
     "Courier New";*/
-}
+
+
 
 .page {
   padding: 40px 30px;

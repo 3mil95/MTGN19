@@ -79,7 +79,7 @@ class Blandaren extends Component {
                     }`}>
                     <img
                       src={`/static/blandaren/${file.thumbnail}`}
-                      className='image-hover'
+                      className='image-hover' alt=""
                     />
                   </a>
                 );
@@ -88,7 +88,7 @@ class Blandaren extends Component {
                     <button onClick={() => this.deleteBlandaren(file.id)}>
                       <img
                         src={`/static/blandaren/${file.thumbnail}`}
-                        className='image-hover'
+                        className='image-hover' alt=""
                       />
                     </button>
                   );

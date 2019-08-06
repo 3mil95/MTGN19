@@ -1,4 +1,4 @@
-import React, { Component, Redirect } from "react";
+import React, { Component } from "react";
 import Frack from "./../Frack";
 import "./Admin.css"
 import Loader from "../loader";
@@ -84,15 +84,11 @@ class HanteraMedia extends Component {
     saveType = (event) => {
         event.preventDefault()
         this.setState({ loading: true });
-        var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }
-
+        //var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }
 
         var name = event.target.name.value
         var date = event.target.date.value
         var id = event.target.id;
-
-        let timestamp = new Date(Date.parse(date));
-        timestamp = timestamp.toLocaleDateString('sv-SV', options)
 
         var data = {
             name: name,

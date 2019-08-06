@@ -5,10 +5,6 @@ import { RingLoader} from 'react-spinners';
 
 class Loader extends Component {
     
-constructor(props) {
-    super(props)
-}
-
     render() {
       const override = css`
       display: block;
@@ -24,7 +20,7 @@ constructor(props) {
           sizeUnit={"px"}
           size={150}
           color={'goldenrod'}
-          loading={this.props.loading}
+          loading={true}
         />
       </div> 
       );

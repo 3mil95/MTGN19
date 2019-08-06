@@ -25,19 +25,18 @@ class HanteraBlandaren extends Component {
     };
 
     generateThumbNail = (fileList, form_data, title) => {
-
         pdfjsLib.GlobalWorkerOptions.workerSrc = "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.1.266/pdf.worker.js";
-        var pdfWorker = new pdfjsLib.PDFWorker();
-        var DOC_URL = "/static/blandaren/";
-        var title = title;
+        //var pdfWorker = new pdfjsLib.PDFWorker();
+        //var DOC_URL = "/static/blandaren/";
+        //var title = title;
         console.log("Skapar thumbnail..")
         for (var i = 0; i < fileList.length; i++) {
             var docObj = fileList[i];
             var fileReader = new FileReader();
-            var pdf_file = docObj.filename;
+            //var pdf_file = docObj.filename;
             fileReader.readAsDataURL(docObj)
             fileReader.onload = (event) => {
-                var typedArray = new Uint8Array(event.target.result);
+                //var typedArray = new Uint8Array(event.target.result);
                 console.log(event.target.result)
                 pdfjsLib.getDocument(event.target.result).then((pdf) => {
                     pdf.getPage(1).then((page) => {
