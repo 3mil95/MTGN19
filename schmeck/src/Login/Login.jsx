@@ -72,7 +72,7 @@ class Login extends Component {
   render() {
     return (
       <div className='login-bg'>
-        <div className='login-box'>{this.createContent()}</div>/>
+        <div className='login-box'>{this.createContent()}</div>
       </div>
     );
   }

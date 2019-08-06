@@ -4,6 +4,10 @@
   margin: auto;
 }
 
+.conf_img {
+  margin-top: -20px;
+}
+
 .profile-page {
   padding: 40px 50px;
 }
@@ -117,52 +121,18 @@
 }
 
 .profile-top-img {
-  /*display: flex;
-  flex-direction: row;
-  justify-content: space-between;*/
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 300px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
-.profile-top-img img {
-  width: 70%;
-  margin: auto;
-}
-
-.profile-img {
-  /*width: 45%;
-  padding: 10px 10px 20px 10px;
-  border: #000 solid 1px;*/
-}
 
 .profile-box h4 {
   text-align: left;
 }
 
-@media (max-width: 720px) {
-  .profile-top-img {
-    padding: 0px;
-  }
 
-  .profile-img {
-    padding: 5px 5px 10px 5px;
-  }
-
-  .profile-contaner {
-    padding: 10px 10px 20px 10px;
-    min-height: 400px;
-  }
-
-  .profile-box {
-    min-height: 400px;
-  }
-
-  .profile-page {
-    padding: 20px 0px 0px 0px;
-    
-  }
-}
 
 .modal {
   position: fixed; /* Stay in place */
@@ -241,3 +211,107 @@
   90% {transform: translateX(-100px)}
   100% {transform: translateX(0px)}
 }
+
+
+.arrow {
+	position: fixed;
+	top: 50%;
+	width: 3vmin;
+	height: 3vmin;
+	background: transparent;
+	border-top: 1vmin solid white;
+	border-right: 1vmin solid white;
+	box-shadow: 0 0 0 lightgray;
+  transition: all 200ms ease;
+}
+	
+	.left {
+		left: 15%;
+		transform: translate3d(0,-50%,0) rotate(-135deg);
+	}
+
+	.right {
+		right: 15%;
+		transform: translate3d(0,-50%,0) rotate(45deg);
+	}
+	
+	.arrow:hover {
+		border-color: orange;
+		box-shadow: 0.5vmin -0.5vmin 0 white;
+	}
+	
+	.arrow:before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-40%,-60%) rotate(45deg);
+		width: 200%;
+		height: 200%;
+	}
+
+  @media (max-width: 1220px) {
+    .left {
+      left: 10%;	
+    }
+  
+    .right {
+      right: 10%;
+    }
+  }
+
+  .prof_img {
+    padding: 10px;
+    padding-bottom: 50px;
+    box-shadow: 0px 0px 5px black;
+    width: 70%;
+    margin: auto;
+  }
+  
+
+  @media (max-width: 720px) {
+    .profile-top-img {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      display: block;
+    }
+  
+    .profile-img {
+      /*padding: 5px 5px 10px 5px;*/
+    }
+  
+    .profile-contaner {
+      padding: 10px 10px 20px 10px;
+      min-height: 400px;
+    }
+  
+    .profile-box {
+      min-height: 400px;
+    }
+  
+    .profile-page {
+      padding: 20px 0px 0px 0px;
+    }
+
+    .left {
+      left: 5%;
+    }
+
+    .right {
+      right: 5%;
+    }
+
+    .conf_img {
+      display: none;
+    }
+  
+    .prof_img {
+      margin:auto;
+      width: 50%;
+      padding: 5px;
+      padding-bottom: 30px;
+    }
+  
+  }
+
+  

@@ -19,7 +19,7 @@
 
 body {
   background: rgb(51, 7, 7);
-  background-image: url("desk-website-background.jpg");
+  background-image: url("/static/images/desk-website-background-mindre.jpg");
   background-size: cover;
 
   background-repeat: no-repeat;
@@ -31,6 +31,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
+
+
 
 /*.typewriter_font {
   font-family: tw;
@@ -56,13 +58,7 @@ code {
   width: 100% - 60px;
 }
 
-@media(max-width: 780px){
-  .page {
-    padding: 40px 15px;
-    min-height: 100vh;
-    width: 100% - 30px;
-  } 
-}
+
 
 .view_header {
   color: white;
@@ -87,4 +83,17 @@ code {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #222;
+}
+
+
+@media(max-width: 780px){
+  .page {
+    padding: 40px 15px;
+    min-height: 100vh;
+    width: 100% - 30px;
+  } 
+
+  .body {
+      background-image: url("/static/images/desk-website-background-mindre-mobil.jpg");
+    }
 }
