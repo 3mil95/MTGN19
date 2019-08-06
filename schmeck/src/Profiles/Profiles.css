@@ -1,3 +1,4 @@
+
 .profiles-contaner {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -6,6 +7,14 @@
 .group-divider {
     color: goldenrod;
     border-bottom: goldenrod 1px solid;
+}
+
+.group-RSA {
+    color: white;
+    background: url('https://media1.giphy.com/media/Y5wlazC8lSVuU/giphy.gif');
+    background-size: contain;
+    /*background-repeat: no-repeat;*/
+    border-color: red; 
 }
 
 .profiles-button {

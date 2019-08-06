@@ -5,6 +5,7 @@ import '../News/News.css'
 import Frack from "../Frack";
 import "./Admin.css";
 
+
 class Inlagg extends Component {
   /*
    * Simple editor component that takes placeholder text as a prop
@@ -162,7 +163,7 @@ Inlagg.formats = [
   "color",
   "align",
   "background",
-  'script'
+  'script',
 ];
 
 
