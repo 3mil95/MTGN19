@@ -68,7 +68,7 @@ class Navigation extends Component {
   createNavigation = () => {
     if (this.state.navOpen === true) {
       return (
-        <div className='navigationBar'>
+        <div className='navigationBar' >
           {(this.props.currentUser) ? this.createProfileCard(): null}
           {this.Links.map((l, i) => {
             let linkClass = "linkClosed link typewriter_font";

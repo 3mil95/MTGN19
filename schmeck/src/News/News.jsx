@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Frack from './../Frack';
 import './News.css';
 import Loader from "../loader"
+import TheNews from "./TheNews";
 
 class News extends Component {
   //Check if the user is admin, if --> they can upload and delete
@@ -40,7 +41,8 @@ class News extends Component {
         {(this.state.loading ? <Loader loading={true} /> : <div>
           <h1 className="view_header">News</h1>
           {this.state.news.map((n, i) => (
-            this.createNews(n, i)
+            <TheNews key={i} news={n}/>
+            //this.createNews(n, i)
           ))}
         </div>)}
       </div>

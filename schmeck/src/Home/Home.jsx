@@ -3,18 +3,18 @@ import "./Home.css";
 import Frack from "../Frack";
 import Media from "../Media/MediaImg";
 import Loader from "../loader"
+import TheNews from "../News/TheNews";
 
 class Home extends Component {
   //Check if the user is admin, if --> they can upload and delete??? should this be here?
   state = { newNews: [], newImg: [], loading: true, bubbolJump: true };
 
-  componentDidMount() {
-
-    this.accessGranted()
+  componentDidMount() { 
     Frack.News.GetAll().then((res) => {
       this.setState({ newNews: res.data })
       Frack.Media.GetAll().then((res) => {
         this.setState({ newImg: res.data, loading: false })
+        this.accessGranted()
       });
     }).catch((errer) => {
       Frack.Logout();
@@ -24,7 +24,7 @@ class Home extends Component {
 
   getLink = () => {
     if (this.props.currentUser) {
-      if (this.props.currentUser.type.name != "nØllan") {
+      if (this.props.currentUser.type.name !== "nØllan") {
         return "https://docs.google.com/forms/d/e/1FAIpQLSeSi5hqEQuxtJ-3cn2sfTC0aQVcNXEMsG-NppbNswRPsMQwMQ/viewform"
       } else {
         return "https://forms.gle/oxUD276qkeENk3gr7"
@@ -34,7 +34,7 @@ class Home extends Component {
   }
 
   accessGranted = async url => {
-    await new Promise(resolve => setTimeout(resolve, 10000));
+    await new Promise(resolve => setTimeout(resolve, 5000));
     this.setState({
       bubbolJump: false
     })
@@ -56,7 +56,7 @@ class Home extends Component {
     newImg.reverse()
     return (
       <div className="page">
-
+        <a className="runing-man" href="https://www.facebook.com"><img width="60px" alt="Click me" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c86d0346-0010-479a-a177-7b3e87007f5e/d8keqfo-650a6ac1-3335-457f-bba0-ef8a46493e19.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2M4NmQwMzQ2LTAwMTAtNDc5YS1hMTc3LTdiM2U4NzAwN2Y1ZVwvZDhrZXFmby02NTBhNmFjMS0zMzM1LTQ1N2YtYmJhMC1lZjhhNDY0OTNlMTkuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.mUsj011uOCK-6Pghkyq946aJ5yPPvDiqHJxG6SqBUnw"/></a>
         {(this.state.loading ? <Loader loading={true} /> :
           <div>
             <div className={(this.state.bubbolJump) ? "hjarta_lada big_lada" : "hjarta_lada small_lada"}>
@@ -71,12 +71,8 @@ class Home extends Component {
 
             {/*Senaste nyheten som lagts upp*/}
             {(this.state.newNews.length !== 0) ?
-              <div >
-                <h3 className="subtitle">Senaste nyheten</h3>
-                <div className="news-contaner">
-                  <h2 className="news-heder"> {news.headline} </h2>
-                  <div className="news-text" dangerouslySetInnerHTML={{ __html: news.text }} />
-                </div></div> : null}
+              <TheNews news={news}/> : null}
+            
             {(this.state.newImg.length !== 0) ?
               <h3 className="subtitle">Senaste bilderna</h3> : null}
             <div className='media-grid'>

@@ -221,7 +221,7 @@ class Media extends Component {
           width='100%'
           height='100%'
           styles={{ height: "25px" }}
-        />
+        >&lt;br /&gt;</iframe>
       );
     } else {
       this.images.push("/" + media.filename);
@@ -310,7 +310,7 @@ class Media extends Component {
                 onClick={this.filterButtonHandeler}>
                 {!this.state.isOpen ? <h2>▼ Filter</h2> : <h2>▲ Filter</h2>}
               </button>
-              {this.props.currentUser.admin ? (
+              {this.props.currentUser ? (this.props.currentUser.admin ? (
                 <button onClick={this.deleteHandeler}>
                   {this.state.isDeleting ? (
                     <h2>{`filer valda (${this.state.deleteImage.length +
@@ -319,7 +319,7 @@ class Media extends Component {
                       <h2>Delete</h2>
                     )}
                 </button>
-              ) : null}
+              ) : null) : null}
             </div>
           </div>
           {/*media*/}

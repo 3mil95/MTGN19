@@ -73,7 +73,8 @@ class App extends Component {
           <ProtectedRoute path="/admin/n0llegrupper" exact adminOnly={true} component={HanteraNollegrupp} currentUser={this.state.currentUser}/>
 
           <Route path="/login" render={(props) => <Login {...props} login={this.login}/>}/>
-          <Route path="*" render={() => <h1>Page not found</h1>}/>
+          <Route path="*" render={() => (<div className="page"><img width='60%' src='https://http.cat/404'/></div>)
+            }/>
         </Switch>
         <Route path="/" component={Footer} />
       </Router>
