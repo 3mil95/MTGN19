@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Frack from "./../Frack";
 import "./Profile.css";
+import ReactQuill from "react-quill";
 //import TopSecret from "./TopSecret";
 import ProfileImg from "./ProfileImg";
 import Loader from "../loader";
 import FlappyPhos from "./FlappyPhös";
+import RSAPopup from "./RSAPopup";
 
 class Profile extends Component {
   state = {
@@ -19,7 +21,9 @@ class Profile extends Component {
     popupIndex: 0,
     scoreFP: 0,
     dir: 0,
-    isFlappyPhos: false
+    isFlappyPhos: false,
+    editorHtml: "",
+    RSAPopup: true
   };
 
   emilioScore = 50;
@@ -47,8 +51,7 @@ class Profile extends Component {
       );
       console.log(index);
       this.setState({
-        index: index
-
+        index: index, RSAPopup: true
       });
     }
   }
@@ -57,7 +60,7 @@ class Profile extends Component {
     if (this.state.popupIndex !== 4) {
       this.setState({
         popup: !this.state.popup
-      })
+      });
     }
   };
 
@@ -66,9 +69,32 @@ class Profile extends Component {
     return (
       <div id='myModal' className='modal'>
         <div className='modal-content'>
-          <h1><span role="img" aria-label="warning">⚠️</span> Warning</h1>
-          <p>{`Är du ${'HELT '.repeat(this.state.popupIndex)}säker på att du vill ha`}<p style={{color: 'rgb(255, 51, 136)', fontFamily: 'comicsans', display: 'inline'}}>comic sans</p>som font?</p>
-          <button className="yes-btn" onClick={this.handleJa}>Ja</button><button className="no-btn" onClick={this.handleNej}>Nej</button>
+          <h1>
+            <span role='img' aria-label='warning'>
+              ⚠️
+            </span>{" "}
+            Warning
+          </h1>
+          <p>
+            {`Är du ${"HELT ".repeat(
+              this.state.popupIndex
+            )}säker på att du vill ha`}
+            <p
+              style={{
+                color: "rgb(255, 51, 136)",
+                fontFamily: "comicsans",
+                display: "inline"
+              }}>
+              comic sans
+            </p>
+            som font?
+          </p>
+          <button className='yes-btn' onClick={this.handleJa}>
+            Ja
+          </button>
+          <button className='no-btn' onClick={this.handleNej}>
+            Nej
+          </button>
         </div>
       </div>
     );
@@ -77,31 +103,31 @@ class Profile extends Component {
   handleJa = () => {
     this.setState({
       popup: false
-    })
+    });
     if (this.state.popupIndex === 4) {
       this.setState({
         popup: false
-      })
-      this.foppesKnapp()
+      });
+      this.foppesKnapp();
     } else {
       this.setState({
         popupIndex: 1 + this.state.popupIndex
-      })
-      this.nextPopup()
+      });
+      this.nextPopup();
     }
-  }
+  };
 
   nextPopup = async () => {
-    await  new Promise(resolve => setTimeout(resolve, 1));
-    this.setState({popup:true})
-  }
+    await new Promise(resolve => setTimeout(resolve, 1));
+    this.setState({ popup: true });
+  };
 
   handleNej = () => {
     this.setState({
       popup: false,
       popupIndex: 0
-    })
-  }
+    });
+  };
 
   handelEditButton = () => {
     this.setState({ edit: !this.state.edit });
@@ -118,25 +144,26 @@ class Profile extends Component {
         profiles: this.props.location.state.profiles,
         index: this.props.location.state.index,
         loading: false
-      })
-    } else {
-      console.log("not found")
-      Frack.User.GetAll().then(res => {
-        console.log(res);
-        const profiles = res.data;
-        profiles.sort((a, b) => this.sortUsers(a, b))
-        const index = profiles.findIndex((user) => this.findUsre(user));
-        if (index === -1) {
-          this.props.history.push('/page-not-found');
-        }
-        console.log(index)
-        this.setState({ profiles: profiles, index: index, loading: false });
-      }).catch((errer) => {
-        Frack.Logout();
-        this.props.history.push('/login');
       });
+    } else {
+      console.log("not found");
+      Frack.User.GetAll()
+        .then(res => {
+          console.log(res);
+          const profiles = res.data;
+          profiles.sort((a, b) => this.sortUsers(a, b));
+          const index = profiles.findIndex(user => this.findUsre(user));
+          if (index === -1) {
+            this.props.history.push("/page-not-found");
+          }
+          console.log(index);
+          this.setState({ profiles: profiles, index: index, loading: false });
+        })
+        .catch(errer => {
+          Frack.Logout();
+          this.props.history.push("/login");
+        });
     }
-
   };
 
   swopUesr = indexTo => {
@@ -231,160 +258,251 @@ class Profile extends Component {
   };
 
   EmilioKnapp = () => {
-    this.setState({isFlappyPhos:true})
-  }
+    this.setState({ isFlappyPhos: true });
+  };
 
   getFlappyPh = () => {
-  if (this.state.isFlappyPhos) {
-    return(<div className="modal"> <FlappyPhos gameOver={this.gameOver}></FlappyPhos> </div>)
-  }
-  return  <button onClick={this.EmilioKnapp}>Kan du få {this.emilioScore} i FlappyPhös?</button>
-  }
-
-  gameOver = (score) => {
-    this.setState({isFlappyPhos:false})
-    if (score < this.emilioScore) {
-      this.setState({emilioPopup: true, scoreFP: score})
+    if (this.state.isFlappyPhos) {
+      return (
+        <div className='modal'>
+          {" "}
+          <FlappyPhos gameOver={this.gameOver} />{" "}
+        </div>
+      );
     }
-    console.log(score)
-  }
+    return (
+      <button onClick={this.EmilioKnapp}>
+        Kan du få {this.emilioScore} i FlappyPhös?
+      </button>
+    );
+  };
+
+  gameOver = score => {
+    this.setState({ isFlappyPhos: false });
+    if (score < this.emilioScore) {
+      this.setState({ emilioPopup: true, scoreFP: score });
+    }
+    console.log(score);
+  };
 
   foppesKnapp = () => {
-    return( [document.body.style.setProperty("font-family", "comicsans", "important"), 
-            document.body.style.setProperty("color", "rgb(255, 51, 136)", "important"),])
-  }
+    return [
+      document.body.style.setProperty("font-family", "comicsans", "important"),
+      document.body.style.setProperty("color", "rgb(255, 51, 136)", "important")
+    ];
+  };
 
   creatUser = (CurrentUser, profile) => {
-    return (   
-      <React.Fragment>       
-      <div className='profile-text-divider'>
-    <h4>Namn</h4>
-    {(profile.type.name === "ÖPH" && profile.name === "Lovisa") ? <React.Fragment><img src="/static/images/lovisa.gif" alt="Lovisa" height="40px" align="left"/><br/><br/></React.Fragment> : <p>{profile.name}</p>}
-    <h4>grupp</h4>
-    <p>
-      {profile.type.name !== "nØllan" ? (
-        <React.Fragment>{profile.type.name} </React.Fragment>
-      ) : null}
-      {profile.n0llegroup ? (
-        <React.Fragment>{profile.n0llegroup.name}</React.Fragment>
-      ) : null}
-    </p>
-  </div>
-      <form onSubmit={this.userUpdate}>
-    <div className='profile-text-divider'>
-      {profile.description || this.state.edit ? (
-        <React.Fragment>
-          <h4>Om</h4>
-          {!this.state.edit ? (
-            <p>{profile.description}</p>
-          ) : (
-              <input
-                placeholder='svar...'
-                defaultValue={profile.description}
-                name='description'
-                type='text'
+    return (
+      <React.Fragment>
+        <div className='profile-text-divider'>
+          <h4>Namn</h4>
+          {profile.type.name === "ÖPH" && profile.name === "Lovisa" ? (
+            <React.Fragment>
+              <img
+                src='/static/images/lovisa.gif'
+                alt='Lovisa'
+                height='40px'
+                align='left'
               />
-            )}
-        </React.Fragment>
-      ) : null}
-    </div>
-    <div className='profile-text-divider'>
-      {profile.q1 || this.state.edit ? (
-        <React.Fragment>
-          <h4>Fråga 1</h4>
-          {!this.state.edit ? (
-            <p>{profile.q1}</p>
+              <br />
+              <br />
+            </React.Fragment>
           ) : (
-              <input
-                placeholder='svar...'
-                type='text'
-                name='q1'
-                defaultValue={profile.q1}
-              />
-            )}
-        </React.Fragment>
-      ) : null}
-      {profile.q2 || this.state.edit ? (
-        <React.Fragment>
-          <h4>Fråga 2</h4>
-          {!this.state.edit ? (
-            <p>{profile.q2}</p>
-          ) : (
-              <input
-                placeholder='svar...'
-                type='text'
-                name='q2'
-                defaultValue={profile.q2}
-              />
-            )}
-        </React.Fragment>
-      ) : null}
-      {profile.q3 || this.state.edit ? (
-        <React.Fragment>
-          <h4>Fråga 3</h4>
-          {!this.state.edit ? (
-            <p>{profile.q3}</p>
-          ) : (
-              <input
-                placeholder='svar...'
-                type='text'
-                name='q3'
-                defaultValue={profile.q3}
-              />
-            )}
-        </React.Fragment>
-      ) : null}
-    </div>
-    {this.state.edit ? (
-      <input type='submit' value='Spara Ändringar' />
-    ) : null}
-  </form>
-  </React.Fragment> )   
-  }
+            <p>{profile.name}</p>
+          )}
+          <h4>grupp</h4>
+          <p>
+            {profile.type.name !== "nØllan" ? (
+              <React.Fragment>{profile.type.name} </React.Fragment>
+            ) : null}
+            {profile.n0llegroup ? (
+              <React.Fragment>{profile.n0llegroup.name}</React.Fragment>
+            ) : null}
+          </p>
+        </div>
+        <form onSubmit={this.userUpdate}>
+          <div className='profile-text-divider'>
+            {profile.description || this.state.edit ? (
+              <React.Fragment>
+                <h4>Om</h4>
+                {!this.state.edit ? (
+                  <p>{profile.description}</p>
+                ) : (
+                  <input
+                    placeholder='svar...'
+                    defaultValue={profile.description}
+                    name='description'
+                    type='text'
+                  />
+                )}
+              </React.Fragment>
+            ) : null}
+          </div>
+          <div className='profile-text-divider'>
+            {profile.q1 || this.state.edit ? (
+              <React.Fragment>
+                <h4>Fråga 1</h4>
+                {!this.state.edit ? (
+                  <p>{profile.q1}</p>
+                ) : (
+                  <input
+                    placeholder='svar...'
+                    type='text'
+                    name='q1'
+                    defaultValue={profile.q1}
+                  />
+                )}
+              </React.Fragment>
+            ) : null}
+            {profile.q2 || this.state.edit ? (
+              <React.Fragment>
+                <h4>Fråga 2</h4>
+                {!this.state.edit ? (
+                  <p>{profile.q2}</p>
+                ) : (
+                  <input
+                    placeholder='svar...'
+                    type='text'
+                    name='q2'
+                    defaultValue={profile.q2}
+                  />
+                )}
+              </React.Fragment>
+            ) : null}
+            {profile.q3 || this.state.edit ? (
+              <React.Fragment>
+                <h4>Nuvarande uppdrag?</h4>
+                {!this.state.edit ? (
+                  <p>{profile.q3}</p>
+                ) : (
+                  <input
+                    placeholder='svar...'
+                    type='text'
+                    name='q3'
+                    defaultValue={profile.q3}
+                  />
+                )}
+              </React.Fragment>
+            ) : null}
+          </div>
+          {this.state.edit ? (
+            <input type='submit' value='Spara Ändringar' />
+          ) : null}
+        </form>
+      </React.Fragment>
+    );
+  };
 
   handleOk = () => {
-    this.setState({emilioPopup: false, scoreFP: 0})
-  }
+    this.setState({ emilioPopup: false, scoreFP: 0 });
+  };
 
   creatGamePopup = () => {
     return (
       <div id='myModal' className='modal'>
-      <div className='modal-content'>
-      <h1><span role="img" aria-label="warning"> 😥 </span> Du fick inte {this.emilioScore} poäng</h1>
-        <p>Du fick bara {this.state.scoreFP} poäng</p>
-        <button className="yes-btn" onClick={this.handleOk}>OK</button>
+        <div className='modal-content'>
+          <h1>
+            <span role='img' aria-label='warning'>
+              {" "}
+              😥{" "}
+            </span>{" "}
+            Du fick inte {this.emilioScore} poäng
+          </h1>
+          <p>Du fick bara {this.state.scoreFP} poäng</p>
+          <button className='yes-btn' onClick={this.handleOk}>
+            OK
+          </button>
+        </div>
       </div>
-    </div>
-    )
-  }
+    );
+  };
 
-  creatUserRSA = (profile) => {
-    return ( <React.Fragment>     <div className='profile-text-divider'>
-    <h4>Namn</h4>
-    {(profile.type.name === "ÖPH" && profile.name === "Lovisa") ? <React.Fragment><img src="/static/images/lovisa.gif" alt="Lovisa" height="40px" align="left"/><br/><br/></React.Fragment> : <p>{profile.name}</p>}
-    <h4>grupp</h4>
-    <p>
-      {profile.type.name !== "nØllan" ? (
-        <React.Fragment>{profile.type.name} </React.Fragment>
-      ) : null}
-      {profile.n0llegroup ? (
-        <React.Fragment>{profile.n0llegroup.name}</React.Fragment>
-      ) : null}
-    </p>
-  </div>
-  <div className='profile-text-divider'>
-    <p>
-    <mark>RSA ser allt RSA ser allt</mark> RSA <mark>ser allt RSA ser allt RSA ser allt RSA ser allt RSA</mark> ser <mark>allt RSA ser allt RSA ser</mark> allt <mark> RSA ser allt RSA ser allt RSA ser allt RSA ser allt
-    RSA ser allt RSA ser allt</mark> RSA <mark>ser allt RSA</mark> ser <mark>allt RSA ser allt RSA ser</mark> allt <mark>RSA ser allt RSA ser allt RSA ser allt RSA ser allt</mark> RSA <mark>ser allt RSA ser allt RSA ser allt
-    RSA ser allt RSA ser allt RSA ser allt RSA</mark> ser allt <mark>RSA ser allt RSA ser allt RSA ser allt</mark> RSA <mark>ser allt RSA</mark> ser <mark>allt RSA ser allt RSA ser allt RSA ser allt RSA ser allt
-    RSA ser allt RSA ser allt RSA ser allt RSA ser allt RSA ser allt RSA ser</mark> allt <mark>RSA ser allt RSA ser allt RSA ser allt RSA ser allt RSA ser allt</mark> RSA <mark>ser allt RSA ser allt
-    RSA ser allt RSA</mark> ser <mark>allt RSA ser allt RSA ser allt RSA ser</mark> allt <mark>RSA ser allt RSA ser allt</mark> RSA <mark>ser allt RSA ser allt RSA </mark> ser <mark>allt RSA ser</mark> allt <mark>RSA ser allt</mark> RSA ser allt 
-    </p>
-  </div>
-  </React.Fragment>)
-  }
+  RSAsubmit = event => {
+    console.log("RSA");
+    event.preventDefault();
+    const { profiles, index } = this.state;
+    const profile = profiles[index];
+
+    console.log("submit", index, this.state.editorHtml);
+    console.log(event.target.q3.value)
+
+    var data = {
+      description: this.state.editorHtml,
+      q1: event.target.q1.value,
+      q2: event.target.q2.value,
+      q3: event.target.q3.value
+    };
+    console.log(data);
+    Frack.User.Update(profile.id, data).then(res => {
+      console.log(res);
+      Frack.User.GetByFilter("id=" + profile.id).then(res => {
+        profiles[index] = res.data;
+        this.setState({ edit: false, profiles: profiles });
+      });
+    });
+  };
+
+  RSAPopup = () => {
+    this.setState({ RSAPopup: false });
+  };
+
+  creatUserRSA = profile => {
+    return (
+      <React.Fragment>
+        {this.state.RSAPopup && profile.q1 !== "" ? (
+          <RSAPopup
+            text={profile.q1}
+            c1={profile.q2}
+            c2={profile.q3}
+            btnRSA={this.RSAPopup}
+          />
+        ) : null}
+        <div className='profile-text-divider'>
+          <h4>Namn</h4>
+          <p>{profile.name}</p>
+          <h4>grupp</h4>
+          <p> {profile.type.name} </p>
+        </div>
+        <div className='profile-text-divider'>
+          {this.state.edit ? (
+            <form onSubmit={this.RSAsubmit}>
+              <ReactQuill
+                style={{ background: "#fff" }}
+                theme={this.state.theme}
+                onChange={this.handleChange}
+                value={this.state.editorHtml}
+                modules={Profile.modules}
+                formats={Profile.formats}
+                bounds={".app"}
+                placeholder={"text..."}
+              />
+              <p>Popup text</p>
+              <input name='q1' type='text' />
+              <p>Popup grön btn</p>
+              <input name='q2' type='text' />
+              <p>Popup röd btn</p>
+              <input name='q3' type='text' />
+
+              {this.state.edit ? <input type='submit' /> : null}
+            </form>
+          ) : (
+            <div
+              className='news-text typewriter_font'
+              dangerouslySetInnerHTML={{ __html: profile.description }}
+            />
+          )}
+        </div>
+      </React.Fragment>
+    );
+  };
+
+  handleChange = html => {
+    this.setState({ editorHtml: html });
+  };
 
   render() {
+    console.log(this.state.editorHtml);
     const CurrentUser = this.props.currentUser;
     if (this.state.index === -1) {
       return null;
@@ -402,14 +520,16 @@ class Profile extends Component {
       <div className='profile-page page typewriter_font'>
         {this.state.emilioPopup ? this.creatGamePopup() : null}
         {this.state.popup ? this.createComicsansPopup() : null}
-        {(this.state.loading ? <Loader loading={true} /> :
+        {this.state.loading ? (
+          <Loader loading={true} />
+        ) : (
           <div>
             <div className='profile-contaner profile-contaner-flyut-left'>
               <div className='profile-box'>
                 {/* top imgs */}
                 <div className='profile-top-img profile-text-divider'>
                   <img
-                    src='https://dvo-korfbal.nl/wp-content/uploads/2018/10/Top-secret.jpg'
+                    src='https://bygghaggstrom.se/wp-content/uploads/2015/10/KTH.png'
                     width='100%'
                     alt=''
                   />
@@ -421,8 +541,17 @@ class Profile extends Component {
                 <img className='profile-img' src={profile.profile_picture} alt=""/>*/}
                 </div>
                 {/* buttons */}
-              {(profile.username === "emilio") ? this.getFlappyPh() : null}
-                {(profile.username === "foppe") ? <button onClick={this.comicsans/*this.foppesKnapp*/} style={{ fontFamily: "comicsans", color: "rgb(255, 51, 136)" }}>Comic sans?</button> : null}
+                {profile.username === "emilio" ? this.getFlappyPh() : null}
+                {profile.username === "foppe" ? (
+                  <button
+                    onClick={this.comicsans /*this.foppesKnapp*/}
+                    style={{
+                      fontFamily: "comicsans",
+                      color: "rgb(255, 51, 136)"
+                    }}>
+                    Comic sans?
+                  </button>
+                ) : null}
                 <div className='profile-button-contaner'>
                   {prev !== -1 ? (
                     <button
@@ -461,7 +590,7 @@ class Profile extends Component {
                 </div>
                 {/* password form */}
                 {this.state.editPassword ? (
-                  <form onSubmit={this.changePassword}>
+                  <form className="password-form" onSubmit={this.changePassword}>
                     <label> Nytt lösenord: </label>
                     <input name='newPassword' type='password' /> <br />
                     <label>Bekräfta lösenord: </label>
@@ -470,7 +599,9 @@ class Profile extends Component {
                   </form>
                 ) : null}
                 {/* text */}
-                {(profile.type.name === "RSA") ? this.creatUserRSA(profile) : this.creatUser(CurrentUser, profile)}
+                {profile.type.name === "RSA"
+                  ? this.creatUserRSA(profile)
+                  : this.creatUser(CurrentUser, profile)}
               </div>
             </div>
           </div>
@@ -479,5 +610,16 @@ class Profile extends Component {
     );
   }
 }
+
+Profile.modules = {
+  toolbar: [{ background: [] }, { color: [] }, "image"],
+
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false
+  }
+};
+
+Profile.formats = ["background", "color", "image"];
 
 export default Profile;

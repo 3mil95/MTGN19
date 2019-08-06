@@ -83,6 +83,11 @@
   border-radius: 20%; 
 }
 
+.password-form {
+  box-shadow: 0 0 5px black;
+  padding: 10px 0px
+}
+
 .profile-contaner-flyin-left {
   animation: left-flyin 0.2s forwards;
 }
@@ -162,6 +167,10 @@
     padding: 20px 0px 0px 0px;
     
   }
+}
+
+.rsa {
+  border-top: 30px solid red !important;
 }
 
 .modal {

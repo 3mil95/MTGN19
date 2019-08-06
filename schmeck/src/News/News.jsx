@@ -39,7 +39,7 @@ class News extends Component {
     return (
       <div className="page">
         {(this.state.loading ? <Loader loading={true} /> : <div>
-          <h1 className="view_header">News</h1>
+          <h1 className="view_header">Nyheter</h1>
           {this.state.news.map((n, i) => (
             <TheNews key={i} news={n}/>
             //this.createNews(n, i)
