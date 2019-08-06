@@ -74,7 +74,7 @@ class Blandaren extends Component {
               {this.state.Blandaren.map(file => {
                 var html = (
                   <a
-                    href={`http://localhost:5000/static/blandaren/${
+                    href={`/static/blandaren/${
                       file.filename
                     }`}>
                     <img
