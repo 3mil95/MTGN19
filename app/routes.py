@@ -24,6 +24,20 @@ STATIC_DIR = os.path.join(os.getcwd(), "static")
 def index(path):
     return send_from_directory(os.getcwd(), "index.html")
 
+"""
+@app.route("asset-manifest.json")
+def asset_manifest():
+    return send_from_directory(os.getcwd(), "asset_manifest.json")
+
+@app.route("favicon.ico")
+def favicon():
+    return send_from_directory(os.getcwd(), "favicon.ico")
+
+@app.route("<file>.js")
+def service_worker(file):
+    return send_from_directory(os.getcwd(), file + ".js")
+"""
+
 # På servern är det bättre att en "riktig" web server som Nginx sköter statiska filer
 if app.config["DEBUG"]:
     #ladda CSS
