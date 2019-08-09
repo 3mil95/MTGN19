@@ -21,7 +21,7 @@
 
 .hjarta_lada {
     transition: all 0.5s; 
-    width: fit-content;  
+    /*width: fit-content;*/
     margin: auto;
     position: fixed;
     background-color: #179167;
@@ -29,13 +29,22 @@
     border: none;
     z-index: 2;
 
+
 }
 
 .hjarta_lada:hover, .big_lada {
-    right: 10px;
-    padding: 15px;
+    right: 30px;
     padding-top: 20px;
-    top: 15px;
+    top: 30px;
+    width: 15%;
+    height: fit-content;
+}
+
+.hjarta_text {
+    color: white;
+    text-align: center;
+    padding: 0;
+    margin: 0;
 }
 
 .small_lada p{
@@ -44,18 +53,22 @@
 
 .big_lada p{
     display: block;
+    font-display: contents;
 }
 
 .hjarta_lada:hover p {
-    display: block; 
+    display: block;
+    font-display: contents;
 }
 
 .small_lada {
     right: 0px;
     padding: 2px;
-    padding-top: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
     top: 5px;
-    width: fit-content;
+    width: 80px;
+    height: 50px;
 }
 
 .small_lada .bubbel {
@@ -79,10 +92,10 @@
     
     .hjarta_lada {
         font-size: 13px;
-        padding: 8px;
+        /*padding: 8px;
         padding-bottom: 0px;
         padding-top: 20px;
-        right: 0
+        right: 0*/
     
     }
 
@@ -94,18 +107,21 @@
 
     .small_lada .bubbel {
         height: 30px;
-        margin: auto;
     }
 
     .small_lada {
         right: 0px;
         padding:0px;
-        padding-right: 9px;
+        padding-right: 12px;
         padding-top: 5px;
         top: 0px;
-        /*width: 35px;
-        height: fit-content;*/
+        width: 35px;
+        height: 35px;
         
+    }
+
+    .hjarta_lada:hover, .big_lada {
+        width: 30%;
     }
 }
 

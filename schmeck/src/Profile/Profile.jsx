@@ -385,7 +385,7 @@ class Profile extends Component {
             ) : null}
           </div>
           {this.state.edit ? (
-            <input type='submit' value='Spara Ändringar' />
+            <input type='submit' value='Spara ändringar' />
           ) : null}
         </form>
       </React.Fragment>
@@ -556,18 +556,12 @@ class Profile extends Component {
                     {CurrentUser.username === profile.username ? (
                       <button
                         className='profile-button'
-                        onClick={this.handelEditButton}>
-                        {" "}
-                        Edit profile{" "}
-                      </button>
+                        onClick={this.handelEditButton}>Ändra profil</button>
                     ) : null}
                     {CurrentUser.username === profile.username ? (
                       <button
                         className='profile-button'
-                        onClick={this.handelEditPasswordButton}>
-                        {" "}
-                        Ändra Lösenord{" "}
-                      </button>
+                        onClick={this.handelEditPasswordButton}>Ändra lösenord</button>
                     ) : null}
                   </div>
                   {next !== -1 ? (
@@ -581,7 +575,7 @@ class Profile extends Component {
                     <input name='newPassword' type='password' /> <br />
                     <label>Bekräfta lösenord: </label>
                     <input name='confermPassword' type='password' /> <br />
-                    <input type='submit' value='Ändra lösenord' />
+                    <input type='submit' value='Spara ändring' />
                   </form>
                 ) : null}
                 {/* text */}

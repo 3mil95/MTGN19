@@ -94,7 +94,7 @@ class Home extends Component {
             <div className={(this.state.bubbolJump) ? "hjarta_lada big_lada" : "hjarta_lada small_lada"}>
               <a className='footer-linck' href={this.getLink()} >
                 <img className={(this.state.bubbolJump) ? "bubbel bubbel-jump" : "bubbel"} src="https://cdn4.iconfinder.com/data/icons/iconsimple-communication/512/talk_bubble_heart-512.png" alt="Hjartat_lada" />
-                <p style={{ color: "white", textAlign: "center" }} >Vad har du<br />på hjärtat?</p></a>
+                <p  className="hjarta_text">Vad har du<br />på hjärtat?</p></a>
             </div>
 
 
