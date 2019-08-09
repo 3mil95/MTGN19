@@ -7,6 +7,8 @@
 *.o
 *.so
 
+Arkiv/
+
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
@@ -785,3 +787,5 @@ node_modules/.bin/uuid
 node_modules/.bin/ot
 node_modules/.bin/loose-envify
 node_modules/.bin/json5
+instance/flask.cfg
+instance/flask.cfg

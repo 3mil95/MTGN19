@@ -7,7 +7,7 @@
 }
 
 .news-heder {
-    font-size: 60px;
+    font-size: 150%;
     font-weight: 9000;
     /*border-top: #000 solid 5px;*/
     border-bottom: #000 solid 2px;
@@ -25,6 +25,9 @@
 @media (max-width: 720px) {
     .news-date {
         display: block;
+    }
+    .news-heder {
+        font-size: 110%;
     }
 }
 .ql-align-center {

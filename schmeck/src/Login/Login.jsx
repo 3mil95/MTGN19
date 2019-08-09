@@ -62,7 +62,7 @@ class Login extends Component {
           {this.state.loginFail ? (
             <h1 className='login-fail'>Access Denied</h1>
           ) : null}
-          <input type='submit' value='logga in' />
+          <input type='submit' value='Logga in' />
         </form>
       );
     }

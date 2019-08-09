@@ -88,7 +88,7 @@ class Home extends Component {
 
     return (
       <div className="page">
-        <a className="runing-man" href="https://www.facebook.com"><img width="60px" alt="Click me" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c86d0346-0010-479a-a177-7b3e87007f5e/d8keqfo-650a6ac1-3335-457f-bba0-ef8a46493e19.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2M4NmQwMzQ2LTAwMTAtNDc5YS1hMTc3LTdiM2U4NzAwN2Y1ZVwvZDhrZXFmby02NTBhNmFjMS0zMzM1LTQ1N2YtYmJhMC1lZjhhNDY0OTNlMTkuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.mUsj011uOCK-6Pghkyq946aJ5yPPvDiqHJxG6SqBUnw" /></a>
+        <a className="runing-man" href="https://forms.gle/hYXFRjN1kyPCn9Rw9"><img width="60px" alt="Click me" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c86d0346-0010-479a-a177-7b3e87007f5e/d8keqfo-650a6ac1-3335-457f-bba0-ef8a46493e19.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2M4NmQwMzQ2LTAwMTAtNDc5YS1hMTc3LTdiM2U4NzAwN2Y1ZVwvZDhrZXFmby02NTBhNmFjMS0zMzM1LTQ1N2YtYmJhMC1lZjhhNDY0OTNlMTkuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.mUsj011uOCK-6Pghkyq946aJ5yPPvDiqHJxG6SqBUnw" /></a>
         {(this.state.loading ? <Loader loading={true} /> :
           <div>
             <div className={(this.state.bubbolJump) ? "hjarta_lada big_lada" : "hjarta_lada small_lada"}>
@@ -103,7 +103,7 @@ class Home extends Component {
 
               {/*Senaste nyheten som lagts upp*/}
               {(this.state.newNews.length !== 0) ?
-                <div><h3 className="subtitle">Senast nytt</h3>
+                <div><h3 className="subtitle">Senaste nytt</h3>
                 <TheNews news={news} /></div> : null}
               {(this.state.newImg.length !== 0) ?
                 <h3 className="subtitle">Senaste bilderna och videorna</h3> : null}

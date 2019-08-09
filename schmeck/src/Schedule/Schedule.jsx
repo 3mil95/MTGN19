@@ -33,7 +33,7 @@ class Schedule extends Component {
     }
     return (
       <div className="page">
-        <h1 className="view_header">Schedule</h1>
+        <h1 className="view_header">Schema</h1>
         <button onClick={this.modeHandler} value="DAY" className={this.btn_class("DAY")} >Day</button>
         <button onClick={this.modeHandler} value="WEEK" className={this.btn_class("WEEK")}>Week</button>
         <button onClick={this.modeHandler} value="AGENDA" className={this.btn_class("AGENDA")}>Program</button>
