@@ -8,7 +8,7 @@ class Profiles extends Component {
   state = { profiles: [] , loading: true};
 
   componentDidMount() {
-    //window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
     Frack.User.GetAll().then(res => {
       console.log(res);
       const profiles = res.data;

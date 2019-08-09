@@ -17,7 +17,7 @@ class Anvandare extends Component {
     password = "lösenord1";
 
     componentDidMount = () => {
-
+        window.scrollTo(0, 0)
         Frack.UserType.GetAll().then(res => {
             this.setState({ types: res.data });
         });

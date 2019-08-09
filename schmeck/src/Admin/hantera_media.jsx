@@ -12,6 +12,7 @@ class HanteraMedia extends Component {
     events = "";
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         Frack.Event.GetAll().then(res => {
             this.setState({ events: res.data, loading: false });
         });

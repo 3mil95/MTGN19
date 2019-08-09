@@ -43,6 +43,7 @@ class Media extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     Frack.Event.GetAll()
       .then(res => {
         //console.log(res);

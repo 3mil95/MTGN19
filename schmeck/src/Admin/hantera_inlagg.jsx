@@ -5,6 +5,7 @@ class HanteraInlagg extends Component {
   state = { news: [] };
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     Frack.News.GetAll().then(res => {
       this.setState({ news: res.data });
     });
