@@ -9,6 +9,10 @@ class HanteraBlandaren extends Component {
         loading: false
     };
 
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     uploadDocument = (event) => {
         event.preventDefault()
         this.setState({ loading: true })

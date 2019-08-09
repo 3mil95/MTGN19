@@ -9,6 +9,7 @@ class News extends Component {
   state = { news: [], loading: true };
 
   componentDidMount = () => {
+    window.scrollTo(0, 0)
     Frack.News.GetAll().then((res) => {
       this.setState({ news: res.data, loading: false })
     }).catch((errer) => {

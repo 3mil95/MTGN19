@@ -8,6 +8,7 @@ class HanteraNollegrupp extends Component {
     };
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         Frack.N0lleGroup.GetAll().then(res => {
             this.setState({ n0llegroup: res.data });
         });

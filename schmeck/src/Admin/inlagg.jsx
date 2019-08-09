@@ -17,6 +17,7 @@ class Inlagg extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     if (this.props.match.params.id) {
       Frack.News.GetByFilter(`id=${this.props.match.params.id}`).then((res) => {
         this.setState({editorHtml: res.data.text, header: res.data.headline, updating: true})

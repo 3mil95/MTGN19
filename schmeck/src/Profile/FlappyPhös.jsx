@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
+import imgSrc1 from './img1.jpg' 
+import imgSrc2 from './img2.jpg' 
 
+
+var img1 = new Image()
+var img2 = new Image()
+
+img1.src = imgSrc1
+img2.src = imgSrc2
 
 class FlappyPhös extends Component {
     state = {  }
@@ -77,9 +85,6 @@ class FlappyPhös extends Component {
         return ( 
             <div>
             <canvas onMouseDown={() => this.click(8)} id="TheCanvas"></canvas>
-            <img id="source"
-       src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AApkLyt.img?h=270&w=299&m=6&q=60&u=t&o=t&x=983&y=712"
-       width={this.size} height={this.size}></img>
             </div>
          );
     }
@@ -104,18 +109,17 @@ class Player{
         this.g = g;
         this.size = size;
         this.velY = 0;
-        this.col1 = "rgb(255,0,0,1)";
-        this.col2 = "rgb(0,0,255,1)"
-        this.col = this.col1
         this.game = game;
     }
 
     draw(c){
         c.fillStyle = this.col;
-        //const image = document.getElementById('source');
-        //c.drawImage(image, this.x, this.y, this.size, this.size);
-        c.fillRect(this.x, this.y, this.size, this.size);
-        this.col = this.col1;
+        if (this.velY > 0) {
+            c.drawImage(img2, this.x, this.y, this.size, this.size);
+        } else {
+            c.drawImage(img1, this.x, this.y, this.size, this.size);
+        }
+        this.img = img2;
     }
 
     updat() {
@@ -142,7 +146,6 @@ class Player{
     }
 
     flapp(vel) {
-        this.col = this.col2;
         this.velY = -vel;
     }
 }

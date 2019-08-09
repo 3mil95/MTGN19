@@ -3,6 +3,10 @@ import "./Schedule.css";
 
 class Schedule extends Component {
   //Check if the user is admin, if --> they can upload and delete, should this be here??
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+  
   state = {
     mode: "AGENDA",
   };

@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import Frack from "./../Frack";
 import "./Profile.css";
 import ReactQuill from "react-quill";
-//import TopSecret from "./TopSecret";
-import ProfileImg from "./ProfileImg";
 import Loader from "../loader";
 import FlappyPhos from "./FlappyPhös";
 import RSAPopup from "./RSAPopup";
@@ -37,11 +35,13 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     console.log("profile start");
     this.getUser();
   }
 
   componentWillReceiveProps(nextProps) {
+    window.scrollTo(0, 0)
     if (nextProps.match.params.user !== this.props.match.params.user) {
       console.log("cwpr");
       const profiles = this.state.profiles;
@@ -169,7 +169,7 @@ class Profile extends Component {
   swopUesr = indexTo => {
     if (indexTo !== -1) {
       const { profiles } = this.state;
-      this.setState({ index: indexTo });
+      this.setState({ index: indexTo, editPassword: false, edit: false });
       this.props.history.push({
         pathname: `/profiler/${profiles[indexTo].username}`,
         state: { profiles: profiles, index: indexTo }
@@ -227,7 +227,7 @@ class Profile extends Component {
   changePassword = event => {
     event.preventDefault();
     const newPassword = event.target.newPassword.value;
-    if (newPassword === event.target.confermPassword.value) {
+    if (newPassword === event.target.confermPassword.value && newPassword.length > 3) {
       Frack.User.Update(this.state.profiles[this.state.index].id, {
         password: newPassword
       }).then(res => {
@@ -309,11 +309,12 @@ class Profile extends Component {
           ) : (
             <p>{profile.name}</p>
           )}
-          <h4>grupp</h4>
+          <h4>Grupp</h4>
           <p>
             {profile.type.name !== "nØllan" ? (
-              <React.Fragment>{profile.type.name} </React.Fragment>
+              <React.Fragment>{profile.type.name}<br/> </React.Fragment>
             ) : null}
+            
             {profile.n0llegroup ? (
               <React.Fragment>{profile.n0llegroup.name}</React.Fragment>
             ) : null}
@@ -441,15 +442,20 @@ class Profile extends Component {
     });
   };
 
-  RSAPopup = () => {
-    this.setState({ RSAPopup: false });
+  RSAPopup = (ok) => {
+    if (ok) {
+      this.setState({ RSAPopup: false });
+    } else {
+      this.props.history.push('/profiler/')
+    }
   };
 
-  creatUserRSA = profile => {
+  creatUserRSA =(CurrentUser, profile) => {
     return (
       <React.Fragment>
-        {this.state.RSAPopup && profile.q1 !== "" ? (
+        {this.state.RSAPopup && profile.q1 !== "" && (profile.q3 !== "" || profile.q2 !== "") ? (
           <RSAPopup
+          user ={CurrentUser}
             text={profile.q1}
             c1={profile.q2}
             c2={profile.q3}
@@ -532,7 +538,7 @@ class Profile extends Component {
                       alt=''
                       className="conf_img"
                     />
-                  <img id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" />
+                  <img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" />
                   {/* <TopSecret />
                 <img className='profile-img' src={profile.profile_picture} alt=""/>*/}
                 </div>
@@ -580,7 +586,7 @@ class Profile extends Component {
                 ) : null}
                 {/* text */}
                 {profile.type.name === "RSA"
-                  ? this.creatUserRSA(profile)
+                  ? this.creatUserRSA(CurrentUser, profile)
                   : this.creatUser(CurrentUser, profile)}
               </div>
             </div>

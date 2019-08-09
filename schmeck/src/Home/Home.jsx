@@ -15,6 +15,7 @@ class Home extends Component {
   filmprojekt_namn = "Detektivnämnden";
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     Frack.News.GetAll().then((res) => {
       this.setState({ newNews: res.data })
       Frack.Media.GetAll().then((res) => {

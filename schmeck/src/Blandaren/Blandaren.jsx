@@ -12,6 +12,7 @@ class Blandaren extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     Frack.Blandaren.GetAll().then(res => {
       this.setState({
         Blandaren: res.data,
