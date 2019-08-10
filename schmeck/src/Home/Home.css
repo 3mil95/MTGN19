@@ -91,7 +91,7 @@
     }
     
     .hjarta_lada {
-        font-size: 13px;
+        font-size: 9px;
         /*padding: 8px;
         padding-bottom: 0px;
         padding-top: 20px;
@@ -121,7 +121,21 @@
     }
 
     .hjarta_lada:hover, .big_lada {
-        width: 30%;
+        width: 25%;
+        right: 5px;
+        top: 10px;
+    }
+
+    .big_lada .bubbel {
+        height: 35px;
+    }
+
+    .big_lada {
+        width: 25%;
+        right: 0px;
+        top: 0px;
+        padding: 0;
+        padding-top: 11px;
     }
 }
 

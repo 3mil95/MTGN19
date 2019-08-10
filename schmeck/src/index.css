@@ -93,7 +93,7 @@ mark {
     width: 100% - 30px;
   } 
 
-  .body {
+  body {
       background-image: url("/static/images/desk-website-background-mindre-mobil.jpg");
     }
 }

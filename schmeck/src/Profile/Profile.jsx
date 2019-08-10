@@ -40,6 +40,19 @@ class Profile extends Component {
     this.getUser();
   }
 
+  componentWillUnmount() {
+    let profile = this.state.profiles[this.state.index];
+    if (profile.type.name == "RSA") {
+      return [document.body.style.setProperty("background-image",
+        "url('/static/images/desk-website-background-mindre.jpg')")]
+    }
+  }
+  componentDidUpdate() {
+    if (this.state.profiles[this.state.index].type.name != "RSA") {
+      return [document.body.style.setProperty("background-image",
+        "url('/static/images/desk-website-background-mindre.jpg')")]
+    }
+  }
   componentWillReceiveProps(nextProps) {
     window.scrollTo(0, 0)
     if (nextProps.match.params.user !== this.props.match.params.user) {
@@ -54,6 +67,8 @@ class Profile extends Component {
         index: index, RSAPopup: true
       });
     }
+
+
   }
 
   comicsans = () => {
@@ -307,14 +322,14 @@ class Profile extends Component {
               <br />
             </React.Fragment>
           ) : (
-            <p>{profile.name}</p>
-          )}
+              <p>{profile.name}</p>
+            )}
           <h4>Grupp</h4>
           <p>
             {profile.type.name !== "nØllan" ? (
-              <React.Fragment>{profile.type.name}<br/> </React.Fragment>
+              <React.Fragment>{profile.type.name}<br /> </React.Fragment>
             ) : null}
-            
+
             {profile.n0llegroup ? (
               <React.Fragment>{profile.n0llegroup.name}</React.Fragment>
             ) : null}
@@ -341,7 +356,7 @@ class Profile extends Component {
           <div className='profile-text-divider'>
             {profile.q1 || this.state.edit ? (
               <React.Fragment>
-                <h4>Fråga 1</h4>
+                {(profile.username === "julia") ? <a href="https://youtu.be/3zSzN9pMzjU?t=89" ><h4>Favoritagent:</h4></a> : <h4>Favoritagent:</h4>}
                 {!this.state.edit ? (
                   <p>{profile.q1}</p>
                 ) : (
@@ -356,7 +371,7 @@ class Profile extends Component {
             ) : null}
             {profile.q2 || this.state.edit ? (
               <React.Fragment>
-                <h4>Fråga 2</h4>
+                {(profile.username === "emilio") ? <a href="https://www.youtube.com/watch?v=0m50vJJ-mrE" ><h4>Bästa gömstället:</h4></a> : <h4>Bästa gömstället:</h4>}
                 {!this.state.edit ? (
                   <p>{profile.q2}</p>
                 ) : (
@@ -371,7 +386,7 @@ class Profile extends Component {
             ) : null}
             {profile.q3 || this.state.edit ? (
               <React.Fragment>
-                <h4>Fråga 3</h4>
+                {(profile.username === "machi") ? <a href="https://www.youtube.com/watch?v=CigSkK0ooAo" ><h4>På mitt nuvarande uppdrag ska jag...</h4></a> : <h4>På mitt nuvarande uppdrag ska jag...</h4>}
                 {!this.state.edit ? (
                   <p>{profile.q3}</p>
                 ) : (
@@ -450,12 +465,16 @@ class Profile extends Component {
     }
   };
 
-  creatUserRSA =(CurrentUser, profile) => {
+  RSABackground = () => {
+    return [document.body.style.setProperty("background-image", "url('https://steamuserimages-a.akamaihd.net/ugc/959718413753048487/9F8EA0C42906E10E93A42C821B2F3718055913E0/')")]
+  }
+  creatUserRSA = (CurrentUser, profile) => {
+    this.RSABackground()
     return (
       <React.Fragment>
         {this.state.RSAPopup && profile.q1 !== "" && (profile.q3 !== "" || profile.q2 !== "") ? (
           <RSAPopup
-          user ={CurrentUser}
+            user={CurrentUser}
             text={profile.q1}
             c1={profile.q2}
             c2={profile.q3}
@@ -471,6 +490,7 @@ class Profile extends Component {
         <div className='profile-text-divider'>
           {this.state.edit ? (
             <form onSubmit={this.RSAsubmit}>
+              <p>Nedan går det att fylla i information du vill ha på din profil.</p>
               <ReactQuill
                 style={{ background: "#fff" }}
                 theme={this.state.theme}
@@ -481,21 +501,24 @@ class Profile extends Component {
                 bounds={".app"}
                 placeholder={"text..."}
               />
-              <p>Popup text</p>
+              <br />
+              <p>Varje gång du uppdaterar din profil måste du fylla i vad knappar och popup rutan ska innehålla för att de ska existera!</p>
+              <br />
+              <p>Popup text (texten som användare får upp i en popup ruta när de går in på din profil)</p>
               <input name='q1' type='text' />
-              <p>Popup grön btn</p>
+              <p>Grön knapp (Den gröna knappen gör det möjligt för användare att komma in på din profil)</p>
               <input name='q2' type='text' />
-              <p>Popup röd btn</p>
+              <p>Röd knapp (Den röda knappen skickar användare bort från din profil)</p>
               <input name='q3' type='text' />
 
               {this.state.edit ? <input type='submit' /> : null}
             </form>
           ) : (
-            <div
-              className='news-text typewriter_font'
-              dangerouslySetInnerHTML={{ __html: profile.description }}
-            />
-          )}
+              <div
+                className='news-text typewriter_font'
+                dangerouslySetInnerHTML={{ __html: profile.description }}
+              />
+            )}
         </div>
       </React.Fragment>
     );
@@ -527,71 +550,82 @@ class Profile extends Component {
         {this.state.loading ? (
           <Loader loading={true} />
         ) : (
-          <div>
-            <div className='profile-contaner profile-contaner-flyut-left'>
-              <div className='profile-box'>
-                {/* top imgs */}
-                <div className='profile-top-img profile-text-divider'>
-                    <img
-                      src="/static/images/CIA_MEDIA_2.png"
-                      width='100%'
-                      alt=''
-                      className="conf_img"
-                    />
-                  <img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" />
-                  {/* <TopSecret />
+            <div className="profile_site">
+              <div className='profile-contaner profile-contaner-flyut-left'>
+                <div className='profile-box'>
+                  {/* top imgs */}
+                  <div className='profile-top-img profile-text-divider'>
+                    {profile.type.name === "RSA"
+                      ? <img
+                        src="/static/images/rsa_eagle_svart.png"
+                        width='80%'
+                        alt=''
+                        className="conf_img rsa_logga"
+                      />
+                      : <img
+                        src="/static/images/CIA_MEDIA_2.png"
+                        width='100%'
+                        alt=''
+                        className="conf_img"
+                      />}   
+                    {(profile.username === "jonathan") ? <a href={`https://www.youtube.com/watch?v=nSNgDrmI2WU&list=FLF6RGWzj6I6xz9kMusXXzaQ&index=29&t=0s`} ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> : <img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" />}
+                    {/* <TopSecret />
                 <img className='profile-img' src={profile.profile_picture} alt=""/>*/}
-                </div>
-                {/* buttons */}
-                {profile.username === "emilio" ? this.getFlappyPh() : null}
-                {profile.username === "foppe" ? (
-                  <button
-                    onClick={this.comicsans /*this.foppesKnapp*/}
-                    style={{
-                      fontFamily: "comicsans",
-                      color: "rgb(255, 51, 136)"
-                    }}>
-                    Comic sans?
+                  </div>
+                  {/* buttons */}
+                  {profile.username === "emilio" ? this.getFlappyPh() : null}
+                  {profile.username === "foppe" ? (
+                    <button
+                      onClick={this.comicsans /*this.foppesKnapp*/}
+                      style={{
+                        fontFamily: "comicsans",
+                        color: "rgb(255, 51, 136)"
+                      }}>
+                      Comic sans?
                   </button>
-                ) : null}
-                <div className='profile-button-contaner'>
-                  {prev !== -1 ? (
-                    <a onClick={() => this.swopUesr(prev)} className="arrow left"></a>
                   ) : null}
-                  <div className='profile-button-2'>
-                    {CurrentUser.username === profile.username ? (
-                      <button
-                        className='profile-button'
-                        onClick={this.handelEditButton}>Ändra profil</button>
+                  <div className='profile-button-contaner'>
+                    {prev !== -1 ? (
+                      <a onClick={() => this.swopUesr(prev)} className="arrow left"></a>
                     ) : null}
-                    {CurrentUser.username === profile.username ? (
-                      <button
-                        className='profile-button'
-                        onClick={this.handelEditPasswordButton}>Ändra lösenord</button>
+                    <div className='profile-button-2'>
+                      {CurrentUser.username === profile.username ? (
+                        <button
+                          className='profile-button'
+                          onClick={this.handelEditButton}>Ändra profil</button>
+                      ) : null}
+                      {CurrentUser.username === profile.username ? (
+                        <button
+                          className='profile-button'
+                          onClick={this.handelEditPasswordButton}>Ändra lösenord</button>
+                      ) : null}
+                    </div>
+                    {next !== -1 ? (
+                      <a onClick={() => this.swopUesr(next)} className="arrow right"></a>
                     ) : null}
                   </div>
-                  {next !== -1 ? (
-                    <a onClick={() => this.swopUesr(next)} className="arrow right"></a>
+                  {/* password form */}
+                  {this.state.editPassword ? (
+                    <form className="password-form" onSubmit={this.changePassword}>
+                      <label> Nytt lösenord: </label>
+                      <input name='newPassword' type='password' /> <br />
+                      <label>Bekräfta lösenord: </label>
+                      <input name='confermPassword' type='password' /> <br />
+                      <input type='submit' value='Spara ändring' />
+                    </form>
                   ) : null}
+                  {/* text */}
+                  {profile.type.name === "RSA"
+                    ? this.creatUserRSA(CurrentUser, profile)
+                    : this.creatUser(CurrentUser, profile)}
+
+                  <div className="finger_prints">
+                    {(profile.username === "mickan") ? <a href="https://www.youtube.com/watch?v=b16-QrE6T8E" ><img alt="prints" width="100%" src="/static/images/fingerprints.png" className="prints" /></a> : <img alt="prints" width="100%" src="/static/images/fingerprints.png" className="prints" />}
+                  </div>
                 </div>
-                {/* password form */}
-                {this.state.editPassword ? (
-                  <form className="password-form" onSubmit={this.changePassword}>
-                    <label> Nytt lösenord: </label>
-                    <input name='newPassword' type='password' /> <br />
-                    <label>Bekräfta lösenord: </label>
-                    <input name='confermPassword' type='password' /> <br />
-                    <input type='submit' value='Spara ändring' />
-                  </form>
-                ) : null}
-                {/* text */}
-                {profile.type.name === "RSA"
-                  ? this.creatUserRSA(CurrentUser, profile)
-                  : this.creatUser(CurrentUser, profile)}
               </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     );
   }

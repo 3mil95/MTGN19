@@ -4,8 +4,23 @@
   margin: auto;
 }
 
+/*.profile_site {
+  background: url("https://www.w3schools.com/cssref/mountain.jpg") no-repeat; background-size: cover;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}*/
+
 .conf_img {
   margin-top: -20px;
+}
+
+.finger_prints {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.finger_prints img{
+  width: 30%;
 }
 
 .profile-page {
@@ -199,6 +214,11 @@
 .no-btn:hover, .yes-btn:hover {
   color: #000;
   background: #fff;
+}
+
+.rsa_logga {
+  margin-top: 10%;
+  margin-left: 10%;
 }
 
 
