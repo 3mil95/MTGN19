@@ -21,7 +21,9 @@ class Profile extends Component {
     dir: 0,
     isFlappyPhos: false,
     editorHtml: "",
-    RSAPopup: true
+    RSAPopup: true,
+    factPopup: false,
+    factText: ""
   };
 
   emilioScore = 50;
@@ -309,6 +311,12 @@ class Profile extends Component {
     return (
       <React.Fragment>
         <div className='profile-text-divider'>
+          {this.state.factPopup ? <RSAPopup 
+                    user ={null}
+                    text={this.state.factText}
+                    c1='ok'
+                    c2=''
+                    btnRSA={this.fact}></RSAPopup>: null}
           <h4>Namn</h4>
           {profile.type.name === "ÖPH" && profile.name === "Lovisa" ? (
             <React.Fragment>
@@ -457,6 +465,18 @@ class Profile extends Component {
     });
   };
 
+  fact = () => {
+    if (this.state.factPopup) {
+      this.setState({factPopup: false})
+    } else {  
+      fetch('https://uselessfacts.jsph.pl/random.json').then(res => {
+        this.setState({factPopup: true, factText: res.text})
+      }).catch(() => {
+        this.setState({factPopup: true, factText: 'ERROR'})
+      })
+    }
+  }
+
   RSAPopup = (ok) => {
     if (ok) {
       this.setState({ RSAPopup: false });
@@ -562,12 +582,16 @@ class Profile extends Component {
                         alt=''
                         className="conf_img rsa_logga"
                       />
-                      : <img
+                      : (profile.username === "joppe") ? 
+                      <img onClick={this.fact} src="http://anglingcouncilireland.ie/wp-content/uploads/sites/244/2016/04/Fun_Facts_Stamp-01-01-01.jpg" width='100%' style={{marginTop: '50px'}}/> :
+                       <img
                         src="/static/images/CIA_MEDIA_2.png"
                         width='100%'
                         alt=''
                         className="conf_img"
-                      />}   
+                      />}
+                      
+                         
                     {(profile.username === "jonathan") ? <a href={`https://www.youtube.com/watch?v=nSNgDrmI2WU&list=FLF6RGWzj6I6xz9kMusXXzaQ&index=29&t=0s`} ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> : <img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" />}
                     {/* <TopSecret />
                 <img className='profile-img' src={profile.profile_picture} alt=""/>*/}

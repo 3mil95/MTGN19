@@ -13,6 +13,7 @@ class Anvandare extends Component {
         loading: true
     };
 
+    user_dict = {}
     update_user = "";
     password = "lösenord1";
 
@@ -26,6 +27,9 @@ class Anvandare extends Component {
         });
 
         Frack.User.GetAll().then(res => {
+            res.data.forEach(user => { 
+                this.user_dict[user.username] = user.id
+            });
             this.setState({ users: res.data, loading: false });
         });
 
@@ -101,6 +105,7 @@ class Anvandare extends Component {
 
         if (user.target.file.value.length > 0) {
             var file = user.target.file.files[0];
+            console.log(file)
             var formData = new FormData();
             formData.append("image", file);
 
@@ -131,6 +136,59 @@ class Anvandare extends Component {
         })
 
     }
+
+    updateProfilesImg = (event) => {
+        event.preventDefault();
+        //this.setState({ loading: true })
+        var profilePicutureRequest = [];
+
+        for (let i = 0; i <  event.target.file.files.length; i++) {
+            var file = event.target.file.files[i];
+            var formData = new FormData();
+            formData.append("image", file);
+
+            console.log(file)
+            var username = file.name
+            username = username.split(".")[0]
+            username = username.toLowerCase()
+            try {
+                var id = this.user_dict[username]
+                if (id !== undefined) {
+                profilePicutureRequest.push(axios({
+                    method: "post",
+                    url: `/api/upload_profile_picture/${id}`,
+                    data: formData,
+                    auth: {
+                        username: sessionStorage.authToken,
+                        password: ""
+                    }
+                }).catch(function (error) {
+                    console.error(error);
+                }));
+            }
+            } catch(error) {
+                console.error(error, username);
+
+            }
+        }    
+        axios.all(profilePicutureRequest).then((responses) => {
+            console.log(responses)
+            for (let i = 0; i < responses.length; i++) {
+                var data = {};
+                let id = responses[i].config.url.split("/")
+                id = id[id.length-1]
+                console.log(id)
+                data["profile_picture"] = responses[i].data.url;
+                Frack.User.Update(id, data).then((res) => {
+                    Frack.User.GetAll().then(res => {
+                        this.setState({ users: res.data});
+                    })
+                });
+            }  
+        })        
+    }
+    
+
 
     removeUser = (user) => {
         var id = user.id
@@ -164,6 +222,10 @@ class Anvandare extends Component {
             <div className="admin_block">
                 <h1 className="view_header">Hantera användare</h1>
                 <div className="admin_container" id="user_list">
+                    <form onSubmit={this.updateProfilesImg}>
+                        <input name="file" type="file" multiple/>
+                        <input type="submit"></input>
+                    </form>
 
                     {this.state.users.map((user) => {
                         return (
