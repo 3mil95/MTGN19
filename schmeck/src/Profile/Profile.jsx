@@ -311,12 +311,12 @@ class Profile extends Component {
     return (
       <React.Fragment>
         <div className='profile-text-divider'>
-          {this.state.factPopup ? <RSAPopup 
-                    user ={null}
-                    text={this.state.factText}
-                    c1='ok'
-                    c2=''
-                    btnRSA={this.fact}></RSAPopup>: null}
+          {this.state.factPopup ? <RSAPopup
+            user={null}
+            text={this.state.factText}
+            c1='ok'
+            c2=''
+            btnRSA={this.fact}></RSAPopup> : null}
           <h4>Namn</h4>
           {profile.type.name === "ÖPH" && profile.name === "Lovisa" ? (
             <React.Fragment>
@@ -364,7 +364,7 @@ class Profile extends Component {
           <div className='profile-text-divider'>
             {profile.q1 || this.state.edit ? (
               <React.Fragment>
-                {(profile.username === "julia") ? <a href="https://youtu.be/3zSzN9pMzjU?t=89" ><h4>Favoritagent:</h4></a> : <h4>Favoritagent:</h4>}
+                <h4>Favoritagent:</h4>
                 {!this.state.edit ? (
                   <p>{profile.q1}</p>
                 ) : (
@@ -379,7 +379,7 @@ class Profile extends Component {
             ) : null}
             {profile.q2 || this.state.edit ? (
               <React.Fragment>
-                {(profile.username === "emilio") ? <a href="https://www.youtube.com/watch?v=0m50vJJ-mrE" ><h4>Bästa gömstället:</h4></a> : <h4>Bästa gömstället:</h4>}
+                <h4>Bästa gömstället:</h4>
                 {!this.state.edit ? (
                   <p>{profile.q2}</p>
                 ) : (
@@ -394,7 +394,7 @@ class Profile extends Component {
             ) : null}
             {profile.q3 || this.state.edit ? (
               <React.Fragment>
-                {(profile.username === "machi") ? <a href="https://www.youtube.com/watch?v=CigSkK0ooAo" ><h4>På mitt nuvarande uppdrag ska jag...</h4></a> : <h4>På mitt nuvarande uppdrag ska jag...</h4>}
+                <h4>På mitt nuvarande uppdrag ska jag...</h4>
                 {!this.state.edit ? (
                   <p>{profile.q3}</p>
                 ) : (
@@ -467,12 +467,12 @@ class Profile extends Component {
 
   fact = () => {
     if (this.state.factPopup) {
-      this.setState({factPopup: false})
-    } else {  
+      this.setState({ factPopup: false })
+    } else {
       fetch('https://uselessfacts.jsph.pl/random.json').then(res => {
-        this.setState({factPopup: true, factText: res.text})
+        this.setState({ factPopup: true, factText: res.text })
       }).catch(() => {
-        this.setState({factPopup: true, factText: 'ERROR'})
+        this.setState({ factPopup: true, factText: 'ERROR' })
       })
     }
   }
@@ -582,16 +582,17 @@ class Profile extends Component {
                         alt=''
                         className="conf_img rsa_logga"
                       />
-                      : (profile.username === "joppe") ? 
-                      <img onClick={this.fact} src="http://anglingcouncilireland.ie/wp-content/uploads/sites/244/2016/04/Fun_Facts_Stamp-01-01-01.jpg" width='100%' style={{marginTop: '50px'}}/> :
-                       <img
-                        src="/static/images/CIA_MEDIA_2.png"
-                        width='100%'
-                        alt=''
-                        className="conf_img"
-                      />}
-                      
-                         
+                      : (profile.username === "joppe") ?
+                        <img src="http://anglingcouncilireland.ie/wp-content/uploads/sites/244/2016/04/Fun_Facts_Stamp-01-01-01.jpg" width='100%' style={{ marginTop: '50px' }} /> :
+                        <img
+                          src="/static/images/CIA_MEDIA_2.png"
+                          width='100%'
+                          alt=''
+                          className="conf_img"
+                        />}
+
+                    {(profile.username === "emilio") ? <a href="https://www.youtube.com/watch?v=0m50vJJ-mrE" ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> : null}
+                    {(profile.username === "machi") ? <a href="https://www.youtube.com/watch?v=CigSkK0ooAo" ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> : null}
                     {(profile.username === "jonathan") ? <a href={`https://www.youtube.com/watch?v=nSNgDrmI2WU&list=FLF6RGWzj6I6xz9kMusXXzaQ&index=29&t=0s`} ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> : <img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" />}
                     {/* <TopSecret />
                 <img className='profile-img' src={profile.profile_picture} alt=""/>*/}
@@ -644,6 +645,7 @@ class Profile extends Component {
                     : this.creatUser(CurrentUser, profile)}
 
                   <div className="finger_prints">
+                    {(profile.username === "julia") ? <a href="https://youtu.be/3zSzN9pMzjU?t=89" ><img alt="prints" width="100%" src="/static/images/fingerprints.png" className="prints" /></a> : null}
                     {(profile.username === "mickan") ? <a href="https://www.youtube.com/watch?v=b16-QrE6T8E" ><img alt="prints" width="100%" src="/static/images/fingerprints.png" className="prints" /></a> : <img alt="prints" width="100%" src="/static/images/fingerprints.png" className="prints" />}
                   </div>
                 </div>

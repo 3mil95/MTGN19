@@ -85,7 +85,7 @@ def blandar_route():
         return jsonify({"message":"fil(er) laddades upp!"}), 200
     if request.method == "GET":
         document_response = document_functions.get_documents()
-        print(document_response)
+        #print(document_response)
         return jsonify(document_response), 200
     if request.method == "DELETE":
         document_functions.delete_document(id)

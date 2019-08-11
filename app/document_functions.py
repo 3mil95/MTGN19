@@ -16,10 +16,10 @@ def upload_document(request):
         for document in files:
             filename = document.filename
             filename = filename.replace(" ", "_")
-            print(filename)
+            #print(filename)
             thumb_name = filename.split(".")[0] +".png"
             thumbnail = request.form["thumbnail"]
-            print(request.form["title"], file=sys.stdout)
+            #print(request.form["title"], file=sys.stdout)
             title = request.form["title"]
             with open(os.path.join(SAVE_FOLDER, thumb_name), "wb") as fh:
                 fh.write(base64.b64decode(thumbnail))
