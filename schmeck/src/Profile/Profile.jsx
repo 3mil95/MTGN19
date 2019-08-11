@@ -492,53 +492,55 @@ class Profile extends Component {
     this.RSABackground()
     return (
       <React.Fragment>
-        {this.state.RSAPopup && profile.q1 !== "" && (profile.q3 !== "" || profile.q2 !== "") ? (
-          <RSAPopup
-            user={CurrentUser}
-            text={profile.q1}
-            c1={profile.q2}
-            c2={profile.q3}
-            btnRSA={this.RSAPopup}
-          />
-        ) : null}
-        <div className='profile-text-divider'>
-          <h4>Namn</h4>
-          <p>{profile.name}</p>
-          <h4>grupp</h4>
-          <p> {profile.type.name} </p>
-        </div>
-        <div className='profile-text-divider'>
-          {this.state.edit ? (
-            <form onSubmit={this.RSAsubmit}>
-              <p>Nedan går det att fylla i information du vill ha på din profil.</p>
-              <ReactQuill
-                style={{ background: "#fff" }}
-                theme={this.state.theme}
-                onChange={this.handleChange}
-                value={this.state.editorHtml}
-                modules={Profile.modules}
-                formats={Profile.formats}
-                bounds={".app"}
-                placeholder={"text..."}
-              />
-              <br />
-              <p>Varje gång du uppdaterar din profil måste du fylla i vad knappar och popup rutan ska innehålla för att de ska existera!</p>
-              <br />
-              <p>Popup text (texten som användare får upp i en popup ruta när de går in på din profil)</p>
-              <input name='q1' type='text' />
-              <p>Grön knapp (Den gröna knappen gör det möjligt för användare att komma in på din profil)</p>
-              <input name='q2' type='text' />
-              <p>Röd knapp (Den röda knappen skickar användare bort från din profil)</p>
-              <input name='q3' type='text' />
+        <div className="RSA_profile">
+          {this.state.RSAPopup && profile.q1 !== "" && (profile.q3 !== "" || profile.q2 !== "") ? (
+            <RSAPopup
+              user={CurrentUser}
+              text={profile.q1}
+              c1={profile.q2}
+              c2={profile.q3}
+              btnRSA={this.RSAPopup}
+            />
+          ) : null}
+          <div className='profile-text-divider'>
+            <h4>Namn</h4>
+            <p>{profile.name}</p>
+            <h4>Grupp</h4>
+            <p> {profile.type.name} </p>
+          </div>
+          <div className='profile-text-divider'>
+            {this.state.edit ? (
+              <form onSubmit={this.RSAsubmit}>
+                <p>Nedan går det att fylla i information du vill ha på din profil.</p>
+                <ReactQuill
+                  style={{ background: "#fff" }}
+                  theme={this.state.theme}
+                  onChange={this.handleChange}
+                  value={this.state.editorHtml}
+                  modules={Profile.modules}
+                  formats={Profile.formats}
+                  bounds={".app"}
+                  placeholder={"text..."}
+                />
+                <br />
+                <p>Varje gång du uppdaterar din profil måste du fylla i vad knappar och popup rutan ska innehålla för att de ska existera!</p>
+                <br />
+                <p>Popup text (texten som användare får upp i en popup ruta när de går in på din profil)</p>
+                <input name='q1' type='text' />
+                <p>Grön knapp (Den gröna knappen gör det möjligt för användare att komma in på din profil)</p>
+                <input name='q2' type='text' />
+                <p>Röd knapp (Den röda knappen skickar användare bort från din profil)</p>
+                <input name='q3' type='text' />
 
-              {this.state.edit ? <input type='submit' /> : null}
-            </form>
-          ) : (
-              <div
-                className='news-text typewriter_font'
-                dangerouslySetInnerHTML={{ __html: profile.description }}
-              />
-            )}
+                {this.state.edit ? <input type='submit' /> : null}
+              </form>
+            ) : (
+                <div
+                  className='news-text typewriter_font'
+                  dangerouslySetInnerHTML={{ __html: profile.description }}
+                />
+              )}
+          </div>
         </div>
       </React.Fragment>
     );
@@ -584,16 +586,22 @@ class Profile extends Component {
                       />
                       : (profile.username === "joppe") ?
                         <img src="http://anglingcouncilireland.ie/wp-content/uploads/sites/244/2016/04/Fun_Facts_Stamp-01-01-01.jpg" width='100%' style={{ marginTop: '50px' }} /> :
-                        <img
+                        (profile.username === "machi") ? <a href="https://www.youtube.com/watch?v=CigSkK0ooAo" ><img
                           src="/static/images/CIA_MEDIA_2.png"
                           width='100%'
                           alt=''
                           className="conf_img"
-                        />}
+                        /></a> :
+                          <img
+                            src="/static/images/CIA_MEDIA_2.png"
+                            width='100%'
+                            alt=''
+                            className="conf_img"
+                          />}
 
-                    {(profile.username === "emilio") ? <a href="https://www.youtube.com/watch?v=0m50vJJ-mrE" ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> : null}
-                    {(profile.username === "machi") ? <a href="https://www.youtube.com/watch?v=CigSkK0ooAo" ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> : null}
-                    {(profile.username === "jonathan") ? <a href={`https://www.youtube.com/watch?v=nSNgDrmI2WU&list=FLF6RGWzj6I6xz9kMusXXzaQ&index=29&t=0s`} ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> : <img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" />}
+                    {(profile.username === "jonathan") ? <a href={`https://www.youtube.com/watch?v=nSNgDrmI2WU&list=FLF6RGWzj6I6xz9kMusXXzaQ&index=29&t=0s`} ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> :
+                      (profile.username === "emilio") ? <a href="https://www.youtube.com/watch?v=0m50vJJ-mrE" ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> :
+                        <img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" />}
                     {/* <TopSecret />
                 <img className='profile-img' src={profile.profile_picture} alt=""/>*/}
                   </div>
