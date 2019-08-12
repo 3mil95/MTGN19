@@ -10,7 +10,6 @@ class Footer extends Component {
   {url:"https://studybuddy.se/", img:"/static/images/Studybuddy.png"},
   {url:"https://mpyadigital.com/", img:"/static/images/mpya_digital.png"},
   {url:"https://www.ericsson.com/en", img:"/static/images/ericsson.png"},
-  {url:"https://www.svt.se", img:"/static/images/svt_logo.png"},
   {url:"https://www.unionen.se/bli-medlem", img:"/static/images/unionen_logo.png"}]
 
 
