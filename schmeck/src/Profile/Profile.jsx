@@ -421,6 +421,25 @@ class Profile extends Component {
   };
 
   creatGamePopup = () => {
+    if (this.state.scoreFP >= this.emilioScore) {
+      return (
+        <div id='myModal' className='modal'>
+        <div className='modal-content'>
+          <h1>
+            <span role='img' aria-label='warning'>
+              😄
+            </span>{" "}
+            Du fick över {this.emilioScore} poäng!
+          </h1>
+          <p>Du fick hela {this.state.scoreFP} poäng! WOW! GRATTIS!!</p>
+          <button className='no-btn' onClick={this.handleOk}>
+            Jag vill inte vinna 😢
+          </button>
+          <a href="">Jag vill vinna!</a>
+        </div>
+      </div>
+      )
+    }
     return (
       <div id='myModal' className='modal'>
         <div className='modal-content'>
@@ -599,8 +618,8 @@ class Profile extends Component {
                             className="conf_img"
                           />}
 
-                    {(profile.username === "jonathan") ? <a href={`https://www.youtube.com/watch?v=nSNgDrmI2WU&list=FLF6RGWzj6I6xz9kMusXXzaQ&index=29&t=0s`} ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> :
-                      (profile.username === "emilio") ? <a href="https://www.youtube.com/watch?v=0m50vJJ-mrE" ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> :
+                    {(profile.username === "jonathan") ? <a href={`https://www.youtube.com/watch?v=D6Ep3uI85BE`} ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> :
+                      (profile.username === "emilio") ? <a href="https://www.youtube.com/watch?v=zDUQTEsawhI" ><img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" /></a> :
                         <img alt="" id={profile.id} width="100%" src={profile.profile_picture} className="prof_img" />}
                     {/* <TopSecret />
                 <img className='profile-img' src={profile.profile_picture} alt=""/>*/}
