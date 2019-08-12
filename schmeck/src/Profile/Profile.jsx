@@ -296,9 +296,9 @@ class Profile extends Component {
 
   gameOver = score => {
     this.setState({ isFlappyPhos: false });
-    if (score < this.emilioScore) {
-      this.setState({ emilioPopup: true, scoreFP: score });
-    }
+
+    this.setState({ emilioPopup: true, scoreFP: score });
+
     console.log(score);
   };
 
@@ -424,20 +424,21 @@ class Profile extends Component {
     if (this.state.scoreFP >= this.emilioScore) {
       return (
         <div id='myModal' className='modal'>
-        <div className='modal-content'>
-          <h1>
-            <span role='img' aria-label='warning'>
-              😄
-            </span>{" "}
-            Du fick över {this.emilioScore} poäng!
+          <div className='modal-content'>
+            <h1>
+              <span role='img' aria-label='warning'>
+                😄
+            </span>
+              Du klarade {this.emilioScore} poäng!
           </h1>
-          <p>Du fick hela {this.state.scoreFP} poäng! WOW! GRATTIS!!</p>
-          <button className='no-btn' onClick={this.handleOk}>
-            Jag vill inte vinna 😢
+            <p>Du fick hela {this.state.scoreFP} poäng! WOW! GRATTIS!!</p>
+            <a href="https://forms.gle/iSmow8aJYwabF2Kb7" className="yes-btn">Jag vill vinna! 😍</a>
+            <button className='no-btn' onClick={this.handleOk}>
+              Jag vill inte vinna 😢
           </button>
-          <a href="">Jag vill vinna!</a>
+
+          </div>
         </div>
-      </div>
       )
     }
     return (
