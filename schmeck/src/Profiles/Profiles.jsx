@@ -10,7 +10,7 @@ class Profiles extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     Frack.User.GetAll().then(res => {
-      console.log(res);
+      //console.log(res);
       const profiles = res.data;
       profiles.sort((a, b) => this.sortUsers(a,b))
       this.setState({ profiles: profiles, loading: false});
@@ -21,7 +21,7 @@ class Profiles extends Component {
   }
 
   clickHandeler = (index, userName) => {
-    console.log(index)
+    //console.log(index)
     this.props.history.push({pathname:`/profiler/${userName}`, state:{profiles:this.state.profiles, index:index}});
   };
 
@@ -55,7 +55,7 @@ class Profiles extends Component {
       return null
     }
     
-    console.log(profiles)
+    //console.log(profiles)
     return (
       <div className='page'>
         {(this.state.loading ? <Loader loading={true} /> : <div>
@@ -69,7 +69,7 @@ class Profiles extends Component {
                   <ProfileButton index={i} name={profile.name} userName={profile.username} userImg={profile.profile_picture} clickHandeler={this.clickHandeler} />
                 </React.Fragment>)
               } 
-              console.log(profiles[i-1].type.name, profile.type.name)
+              //console.log(profiles[i-1].type.name, profile.type.name)
               if (profiles[i-1].type.name !== profile.type.name || (profile.type.name ==='nØllan' && profiles[i-1].n0llegroup.name !== profile.n0llegroup.name)) {
                 return (<React.Fragment key={i}>
                   {(profile.type.name ==='nØllan') ? <h2 className={this.getDividerClass(profile)}>{`${profile.n0llegroup.name}`}</h2> : <h2 className={this.getDividerClass(profile)}>{`${profile.type.name}`}</h2>}

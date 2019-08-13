@@ -13,7 +13,6 @@ class Login extends Component {
       .then(res => {
         sessionStorage.authToken = res.data.token;
         if (Frack.HasToken()) {
-          console.log(this.props.location.url)
           this.props.login()
           if (this.props.location.url) {
             this.accessGranted(this.props.location.url);
@@ -24,7 +23,6 @@ class Login extends Component {
         return Frack.UpdateCurrentUser();
       })
       .catch(error => {
-        console.log("error");
         this.setState({ loginFail: true });
       });
   };

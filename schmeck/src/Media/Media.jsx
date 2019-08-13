@@ -91,7 +91,7 @@ class Media extends Component {
             } else {
               i = deleteVideo.indexOf(media.id);
             }
-            console.log(i);
+            //console.log(i);
             if (i !== -1) {
               medias.splice(index, 1);
             }
@@ -199,7 +199,6 @@ class Media extends Component {
       deleteList = this.state.deleteVideo;
     }
     const i = deleteList.indexOf(this.state.medias[index].id);
-    console.log(i);
     if (i !== -1) {
       deleteList.splice(i, 1);
     } else {
@@ -230,25 +229,19 @@ class Media extends Component {
   };
 
   sortMedia = (a, b) => {
-    console.log(a, b);
-    console.log(a.week);
     if (a.week !== b.week) {
-      console.log("week");
       return a.week - b.week;
     }
     if (a.event.datetime !== b.event.datetime) {
-      console.log("datetime");
       return Date.parse(a.event.datetime) - Date.parse(b.event.datetime);
     }
     if (a.event.name !== b.event.name) {
-      console.log("name");
       return a.event.name - b.event.name;
     }
     return 0;
   };
 
   createImageTag = (i, media) => {
-    console.log(media.type);
     const { deleteImage, deleteVideo } = this.state;
     let deleteClass = "";
     if (this.state.isDeleting) {
@@ -262,7 +255,6 @@ class Media extends Component {
           return id === media.id;
         });
       }
-      console.log(i);
       if (i) {
         deleteClass = "delete-media";
       }

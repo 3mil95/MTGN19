@@ -2,7 +2,6 @@ import React from "react";
 import './Media.css'
 
 const CheckBox = props => {
-    console.log(props.check)
   return (
     <button className="checkbox" onClick={() => props.clickHandeler(props.index, props.type)}>
       <svg className="checkbox-box"

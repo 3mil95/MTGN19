@@ -6,7 +6,7 @@ const TheNews = (props) => {
     //const timestamp = ;
     var timestamp = new Date(Date.parse(news.timestamp));
     timestamp = timestamp.toLocaleDateString('sv-SV', options);
-    console.log(timestamp)
+    //console.log(timestamp)
 
     return (
       <div className="news-contaner">

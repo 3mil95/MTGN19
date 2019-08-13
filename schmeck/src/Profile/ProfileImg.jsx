@@ -3,7 +3,7 @@ import "./Profile.css";
 
 
 const ProfileImg = (props) => {
-    console.log(props.image)
+    //console.log(props.image)
     /*<svg width="100%" height="100%" viewBox="0 0 1900 1643" style={{fillRule:'evenodd',clipRule:'evenodd',strokeLinejoin:'round',strokeMiterlimit:'1.41421'}}>
     <g transform="matrix(1,0,0,1,-7833,-3515)">
         <g id="Artboard777" transform="matrix(1,0,0,1,2132,-4.54747e-13)">

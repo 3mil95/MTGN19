@@ -44,7 +44,6 @@ class Blandaren extends Component {
   };
 
   render() {
-    console.log("prop", this.props.currentUser)
     var deletebtn = <div />;
     if (this.props.currentUser) {
       if (this.props.currentUser.admin) {

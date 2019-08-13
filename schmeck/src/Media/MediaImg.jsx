@@ -23,7 +23,7 @@ class MediaImg extends Component {
 
     return (
       <div
-        className= {this.props.deleteClass + ' media-img typewriter_font'}
+        className= {'media-img typewriter_font ' + this.props.deleteClass}
         onMouseEnter={this.togelHover}
         onMouseLeave={this.togelHover}
         onClick={() => this.props.onClickHandeler(this.props.index)}

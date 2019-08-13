@@ -33,12 +33,12 @@ class Profile extends Component {
     if (!Frack.CurrentUser) {
       Frack.UpdateCurrentUser();
     }
-    console.log(Frack.CurrentUser);
+    //console.log(Frack.CurrentUser);
   }
 
   componentDidMount() {
     window.scrollTo(0, 0)
-    console.log("profile start");
+    //console.log("profile start");
     this.getUser();
   }
 
@@ -58,13 +58,13 @@ class Profile extends Component {
   componentWillReceiveProps(nextProps) {
     window.scrollTo(0, 0)
     if (nextProps.match.params.user !== this.props.match.params.user) {
-      console.log("cwpr");
+      //console.log("cwpr");
       const profiles = this.state.profiles;
       profiles.sort((a, b) => this.sortUsers(a, b));
       const index = profiles.findIndex(user =>
         this.findUsre(user, nextProps.match.params.user)
       );
-      console.log(index);
+      //console.log(index);
       this.setState({
         index: index, RSAPopup: true
       });
@@ -82,7 +82,7 @@ class Profile extends Component {
   };
 
   createComicsansPopup = () => {
-    console.log("popup");
+    //console.log("popup");
     return (
       <div id='myModal' className='modal'>
         <div className='modal-content'>
@@ -155,7 +155,7 @@ class Profile extends Component {
   };
 
   getUser = () => {
-    console.log("hej profil");
+    //console.log("hej profil");
     if (this.props.location.state) {
       this.setState({
         profiles: this.props.location.state.profiles,
@@ -163,17 +163,17 @@ class Profile extends Component {
         loading: false
       });
     } else {
-      console.log("not found");
+      //console.log("not found");
       Frack.User.GetAll()
         .then(res => {
-          console.log(res);
+          //console.log(res);
           const profiles = res.data;
           profiles.sort((a, b) => this.sortUsers(a, b));
           const index = profiles.findIndex(user => this.findUsre(user));
           if (index === -1) {
             this.props.history.push("/page-not-found");
           }
-          console.log(index);
+          //console.log(index);
           this.setState({ profiles: profiles, index: index, loading: false });
         })
         .catch(errer => {
@@ -215,7 +215,7 @@ class Profile extends Component {
   };
 
   findUsre = (user, theUserSerct = this.props.match.params.user) => {
-    console.log(this.props.match.params.user);
+    //console.log(this.props.match.params.user);
     return user.username === theUserSerct;
   };
 
@@ -266,7 +266,7 @@ class Profile extends Component {
     };
 
     Frack.User.Update(profile.id, data).then(res => {
-      console.log(res);
+      //console.log(res);
       Frack.User.GetByFilter("id=" + profile.id).then(res => {
         profiles[index] = res.data;
         this.setState({ edit: false, profiles: profiles });
@@ -299,7 +299,7 @@ class Profile extends Component {
 
     this.setState({ emilioPopup: true, scoreFP: score });
 
-    console.log(score);
+    //console.log(score);
   };
 
   foppesKnapp = () => {
@@ -461,13 +461,13 @@ class Profile extends Component {
   };
 
   RSAsubmit = event => {
-    console.log("RSA");
+    //console.log("RSA");
     event.preventDefault();
     const { profiles, index } = this.state;
     const profile = profiles[index];
 
-    console.log("submit", index, this.state.editorHtml);
-    console.log(event.target.q3.value)
+    //console.log("submit", index, this.state.editorHtml);
+    //console.log(event.target.q3.value)
 
     var data = {
       description: this.state.editorHtml,
@@ -475,9 +475,9 @@ class Profile extends Component {
       q2: event.target.q2.value,
       q3: event.target.q3.value
     };
-    console.log(data);
+    //console.log(data);
     Frack.User.Update(profile.id, data).then(res => {
-      console.log(res);
+      //console.log(res);
       Frack.User.GetByFilter("id=" + profile.id).then(res => {
         profiles[index] = res.data;
         this.setState({ edit: false, profiles: profiles });
@@ -571,7 +571,7 @@ class Profile extends Component {
   };
 
   render() {
-    console.log(this.state.editorHtml);
+    //console.log(this.state.editorHtml);
     const CurrentUser = this.props.currentUser;
     if (this.state.index === -1) {
       return null;
@@ -579,7 +579,7 @@ class Profile extends Component {
     if (!CurrentUser) {
       return null;
     }
-    console.log(CurrentUser);
+    //console.log(CurrentUser);
     let index = this.state.index;
     let profile = this.state.profiles[index];
     let next = this.findNext();

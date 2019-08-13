@@ -17,6 +17,7 @@ class FlappyPhös extends Component {
         this.size = 30
         this.g = 0.3
         this.playing = false;
+        this.isGameOver = false;
         this.gameWidth = 350;
         this.gameHeight = 500;
         this.gameObjects = [];
@@ -58,11 +59,12 @@ class FlappyPhös extends Component {
 
     gameOver = () => {
         this.playing = false;
+        this.isGameOver = true;
         this.props.gameOver(this.score)
     }
 
     click = (vel) => {
-        console.log("jump")
+        //console.log("jump")
         if (this.playing === false) {
             this.playing = true;
         }
@@ -91,12 +93,20 @@ class FlappyPhös extends Component {
         );
     }
 
+    stopAnimationFrame() {
+        console.log("stop")
+    } 
 
     animate = () => {
-        console.log(":)")
-        requestAnimationFrame(this.animate);
-        this.c.clearRect(0, 0, this.gameWidth, this.gameHeight);
-        this.updat(this.c);
+        //console.log(":)")
+        if (this.isGameOver) {
+            //console.log(":(")
+            requestAnimationFrame(this.stopAnimationFrame)
+        } else {
+            requestAnimationFrame(this.animate);
+            this.c.clearRect(0, 0, this.gameWidth, this.gameHeight);
+            this.updat(this.c);
+        }
     }
 
 }

@@ -6,7 +6,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   Frack.UpdateCurrentUser().catch(() => {
     Frack.Logout();
   })
-  console.log(Frack.HasToken())
+  //console.log(Frack.HasToken())
   return (
     <Route
       {...rest}
@@ -22,7 +22,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
           if (Frack.HasToken()) {
             return <Component {...props} currentUser={rest.currentUser}/>;
           } else {
-            console.log(rest.path)
+            //console.log(rest.path)
             //return <Redirect to='/Login'/>
             return <Redirect to={{pathname :'/Login', url: props.location.pathname}}/>;
           }

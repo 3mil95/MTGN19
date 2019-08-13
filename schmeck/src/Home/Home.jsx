@@ -7,6 +7,7 @@ import Loader from "../loader"
 import Lightbox from "lightbox-react";
 import "lightbox-react/style.css";
 import TheNews from "../News/TheNews";
+import './../Media/Media.css';
 
 class Home extends Component {
   //Check if the user is admin, if --> they can upload and delete??? should this be here?
@@ -74,8 +75,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props.currentUser)
-
     let news = this.state.newNews[0];
     let newImg = this.state.newImg;
     let filmprojektet_thumb = this.state.filmprojektet;
@@ -84,7 +83,6 @@ class Home extends Component {
     if (newImg.length > 4) {
       newImg = this.state.newImg.slice(this.state.newImg.length - 4, this.state.newImg.length);
     }
-    console.log(newImg)
     newImg.reverse()
 
     return (
@@ -110,7 +108,7 @@ class Home extends Component {
                 <h3 className="subtitle">Senaste bilderna och videorna</h3> : null}
               <div className='media-grid'>
                 {newImg.map((media, i) => {
-                  return (<Media key={i} media={media} index={i} onClickHandeler={this.mediaClick}></Media>)
+                  return (<Media key={i} deleteClass='' media={media} index={i} onClickHandeler={this.mediaClick}></Media>)
                 })}
               </div>
             </div>

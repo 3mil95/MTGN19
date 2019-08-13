@@ -28,12 +28,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("Mount App") 
+    //console.log("Mount App") 
     this.UpdateCurrentUser()
   }
 
   UpdateCurrentUser = () => {
-    console.log("UpdateCurrentUser...")
+    //console.log("UpdateCurrentUser...")
     Frack.UpdateCurrentUser().then(() => {
       this.setState({
         currentUser: Frack.CurrentUser
@@ -42,12 +42,12 @@ class App extends Component {
   }
 
   login = () => {
-    console.log("login...")
+    //console.log("login...")
     this.UpdateCurrentUser()
   } 
 
   render() {
-  console.log(this.state.currentUser)
+  //console.log(this.state.currentUser)
   Frack.UpdateCurrentUser().catch((res) =>  {Frack.Logout();})
   return (
     <div className="App">

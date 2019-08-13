@@ -63,7 +63,7 @@ function GetApiObject(url) {
 
 var Frack = {
     Login: function(username, password) {
-        console.log("login API");
+        //console.log("login API");
         return axios({
             method: "get",
             url: "/api/token",
