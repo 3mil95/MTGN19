@@ -79,7 +79,7 @@
 }
 
 .news-text img {
-    width: 96%;
+    max-width: 96%;
     padding: 2%
 }
 
