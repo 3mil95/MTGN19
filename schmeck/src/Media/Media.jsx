@@ -34,6 +34,8 @@ class Media extends Component {
     loading: true
   };
 
+
+  index = 0;
   images = [];
 
   checkboxHandler = (index, type) => {
@@ -272,7 +274,7 @@ class Media extends Component {
   };
 
   render() {
-    var index = 0;
+    this.index = 0;
     this.images = [];
     const { photoIndex, isOpenLite, medias } = this.state;
     medias.sort((a, b) => {
@@ -323,23 +325,25 @@ class Media extends Component {
               if (this.showImg(media)) {
                 this.createImages(media);
                 if (i === 0) {
+                  this.index++;
                   return (
                     <React.Fragment key={i}>
                       <h2 className='media-divider'>{`v.${media.week}`}</h2>
-                      {this.createImageTag(index, media)}
+                      {this.createImageTag(this.index-1, media)}
                     </React.Fragment>
                   );
                 }
                 if (medias[i - 1].week !== media.week) {
+                  this.index++;
                   return (
                     <React.Fragment key={i}>
                       <h2 className='media-divider'>{`v.${media.week}`}</h2>
-                      {this.createImageTag(i, media)}
+                      {this.createImageTag(this.index-1, media)}
                     </React.Fragment>
                   );
                 }
-                return this.createImageTag(index, media);
-                index++;
+                this.index++;
+                return this.createImageTag(this.index-1, media);
               }
               return null;
             })}
