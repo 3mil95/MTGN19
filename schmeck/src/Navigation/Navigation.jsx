@@ -71,9 +71,9 @@ class Navigation extends Component {
         <div className='navigationBar' >
           {(this.props.currentUser) ? this.createProfileCard(): null}
           {this.Links.map((l, i) => {
-            let linkClass = "linkClosed link typewriter_font";
+            let linkClass = "linkClosed link typewriter-font";
             if (l.url === this.props.location.pathname)
-              linkClass = "linkOpen link typewriter_font";
+              linkClass = "linkOpen link typewriter-font";
 
             if (l.text === this.Links[this.Links.length-1].text) {
               if (!this.props.currentUser) {
@@ -93,7 +93,7 @@ class Navigation extends Component {
             );
           })}
           <button
-                className="linkClosed link typewriter_font"
+                className="linkClosed link typewriter-font"
                 onClick={() => this.LogoutHndler()}>
                 <p className='link-text'>logga ut</p>
               </button>

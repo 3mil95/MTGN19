@@ -188,6 +188,7 @@ class Media extends Component {
   };
 
   openLightBox = index => {
+    console.log("index: " + index)
     if (!this.state.isDeleting) {
       this.setState({ isOpenLite: true, photoIndex: index });
       return;
@@ -230,10 +231,10 @@ class Media extends Component {
 
   sortMedia = (a, b) => {
     if (a.week !== b.week) {
-      return a.week - b.week;
+      return b.week - a.week;
     }
     if (a.event.datetime !== b.event.datetime) {
-      return Date.parse(a.event.datetime) - Date.parse(b.event.datetime);
+      return Date.parse(b.event.datetime) - Date.parse(a.event.datetime);
     }
     if (a.event.name !== b.event.name) {
       return a.event.name - b.event.name;
@@ -271,6 +272,7 @@ class Media extends Component {
   };
 
   render() {
+    var index = 0;
     this.images = [];
     const { photoIndex, isOpenLite, medias } = this.state;
     medias.sort((a, b) => {
@@ -317,14 +319,14 @@ class Media extends Component {
           </div>
           {/*media*/}
           <div className='media-grid'>
-            {medias.map((media, i) => {
+            {medias.map((media, i) => {  
               if (this.showImg(media)) {
                 this.createImages(media);
                 if (i === 0) {
                   return (
                     <React.Fragment key={i}>
                       <h2 className='media-divider'>{`v.${media.week}`}</h2>
-                      {this.createImageTag(i, media)}
+                      {this.createImageTag(index, media)}
                     </React.Fragment>
                   );
                 }
@@ -336,7 +338,8 @@ class Media extends Component {
                     </React.Fragment>
                   );
                 }
-                return this.createImageTag(i, media);
+                return this.createImageTag(index, media);
+                index++;
               }
               return null;
             })}

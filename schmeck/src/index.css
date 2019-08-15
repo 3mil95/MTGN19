@@ -34,9 +34,9 @@ body {
 
 
 
-/*.typewriter_font {
+.typewriter-font {
   font-family: tw;
-}*/
+}
 
 
   
@@ -52,7 +52,7 @@ mark {
 
 
 
-.page {
+.page { 
   padding: 40px 30px;
   min-height: 100vh;
   width: 100% - 60px;
@@ -60,7 +60,7 @@ mark {
 
 
 
-.view_header {
+.view_header { 
   color: white;
   margin-bottom: 1%;
 }

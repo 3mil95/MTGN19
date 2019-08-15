@@ -31,7 +31,7 @@
 
 .checkbox-contaner {
     z-index: -1;
-    /*padding: 20px;*/
+    padding-top: 20px;
     background-image: url('http://www.photos-public-domain.com/wp-content/uploads/2012/05/ivory-off-white-paper-texture.jpg');
     background-size: fill;
     background: #b98d44;
