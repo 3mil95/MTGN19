@@ -81,7 +81,7 @@ class MediaImg extends Component {
                     x='1475px'
                     y='750px'
                     dominantBaseline="middle" textAnchor="middle"
-                    style={{ fontWeight: "700", fontSize: "60px" }}>
+                    style={{ fontWeight: "700", fontSize: "45px" }}>
                     {this.props.media.event.name}
                   </text>
                 </g>
@@ -161,7 +161,7 @@ class MediaImg extends Component {
                     x='1475px'
                     y='740px'
                    dominantBaseline="middle" textAnchor="middle"
-                    style={{ fontWeight: "700", fontSize: "60px" }}>
+                    style={{ fontWeight: "700", fontSize: "45px" }}>
                     {this.props.media.event.name}
                   </text>
                 </g>

@@ -17,6 +17,10 @@
   src: url('/static/images/comicsans.ttf');
 }
 
+p {
+  word-break: break-all;
+}
+
 body {
   background: rgb(51, 7, 7);
   background-image: url("/static/images/desk-website-background-mindre.jpg");

@@ -76,14 +76,23 @@ class Home extends Component {
 
   render() {
     let news = this.state.newNews[0];
-    let newImg = this.state.newImg;
+    let newImg = [] // this.state.newImg;
     let filmprojektet_thumb = this.state.filmprojektet;
     let filmprojektet = this.state.filmIframe;
     let photoIndex = this.state.photoIndex;
-    if (newImg.length > 4) {
+    /*if (newImg.length > 4) {
       newImg = this.state.newImg.slice(this.state.newImg.length - 4, this.state.newImg.length);
+    }*/
+    let n = 0
+    for (let i = this.state.newImg.length-1; i >= 0; i--){
+      if (n > 4) {
+        break;
+      }
+      if (this.state.newImg[i].type === 'image') {
+        newImg.push(this.state.newImg[i])
+      }
     }
-    newImg.reverse()
+    
 
     return (
       <div className="page">
