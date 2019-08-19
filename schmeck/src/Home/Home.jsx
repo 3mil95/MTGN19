@@ -85,10 +85,11 @@ class Home extends Component {
     }*/
     let n = 0
     for (let i = this.state.newImg.length-1; i >= 0; i--){
-      if (n > 4) {
+      if (n >= 4) {
         break;
       }
       if (this.state.newImg[i].type === 'image') {
+        n++;
         newImg.push(this.state.newImg[i])
       }
     }
