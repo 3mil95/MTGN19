@@ -75,14 +75,22 @@ class Home extends Component {
   }
 
   render() {
-    let news = this.state.newNews[0];
+    //let news = this.state.newNews[0];
     let newImg = [] // this.state.newImg;
+    let news = []
+    console.log(this.state.newNews)
     let filmprojektet_thumb = this.state.filmprojektet;
     let filmprojektet = this.state.filmIframe;
     let photoIndex = this.state.photoIndex;
-    /*if (newImg.length > 4) {
-      newImg = this.state.newImg.slice(this.state.newImg.length - 4, this.state.newImg.length);
-    }*/
+
+    for (let i = this.state.newNews.length-1; i >= 0; i--){
+      const date = new Date(this.state.newNews[i].timestamp)
+      const today = new Date()
+      if (date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear()) {
+        news.push(this.state.newNews[i])
+      }
+    }
+    news.reverse()
     let n = 0
     for (let i = this.state.newImg.length-1; i >= 0; i--){
       if (n >= 4) {
@@ -113,7 +121,9 @@ class Home extends Component {
               {/*Senaste nyheten som lagts upp*/}
               {(this.state.newNews.length !== 0) ?
                 <div><h3 className="subtitle">Senaste nytt</h3>
-                <TheNews news={news} /></div> : null}
+                {news.map((theNews) => <TheNews news={theNews}/>)}
+             </div> : null}
+
               {(this.state.newImg.length !== 0) ?
                 <h3 className="subtitle">Senaste bilderna och videorna</h3> : null}
               <div className='media-grid'>
