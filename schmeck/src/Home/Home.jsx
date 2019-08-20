@@ -83,14 +83,13 @@ class Home extends Component {
     let filmprojektet = this.state.filmIframe;
     let photoIndex = this.state.photoIndex;
 
-    for (let i = this.state.newNews.length-1; i >= 0; i--){
+    for (let i = 0; i < this.state.newNews.length; i++){
       const date = new Date(this.state.newNews[i].timestamp)
       const today = new Date()
-      if (date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear()) {
+      if ((date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear()) || i === 0) {
         news.push(this.state.newNews[i])
       }
     }
-    news.reverse()
     let n = 0
     for (let i = this.state.newImg.length-1; i >= 0; i--){
       if (n >= 4) {
