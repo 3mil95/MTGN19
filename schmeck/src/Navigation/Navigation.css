@@ -1,11 +1,12 @@
 .navigationBar { 
-    width: 300px;
+    width: 350px;
     max-width: 80%;
     height: 100%;
     background-color: #179167;
     overflow-y: scroll;
     border-left: #000 2px solid;
     border-right: #000 2px solid;
+    z-index: 10;
 }
 
 .navButton {
@@ -15,17 +16,23 @@
     color: #fff;
     border: none;
     border-radius: 0px 5px 5px 0px;
-    font-size: 30px
+    font-size: 30px;
+    z-index: 10;
 }
 
 .navigation {
+    /*font-family: wt;*/
     position: fixed;
     left: 0px;
-    width: 350px;
     max-width: 100%;
-    height: 100%;
+    height: 40px;
     display: flex;
     flex-direction: row;
+    z-index: 5;
+}
+
+.navigation-open {
+    height: 100%;
 }
 
 .linkOpen {
@@ -35,8 +42,17 @@
 .linkClosed {
     background-image: url("./box.png"); 
 }
+
+.link-text {
+    text-align: center;
+}
+
+.link:hover {
+    background-image: url("./boxOpen.png");
+}
   
 .link { 
+    cursor: pointer;
     margin: auto 10px;
     width: 100%;
     height: 120px;
@@ -51,13 +67,41 @@
     text-decoration: none;
     color: #000;
     margin: auto;
-    
 }
 
-.profil {
-    margin: 10px;
+.navigation-profil {
     background: #fff;
-    width: 100% - 20px;
+    background-image: url("https://t3.ftcdn.net/jpg/02/54/39/96/240_F_254399631_pUTcCHnvHx6ggIDNk6yCsLHRu4Ckm0ZR.jpg");
+    background-size: cover;
+    margin: 20px;
+    padding: 2% 0;
+    width: 100% - 40px;
     height: 150px;
     border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 20% 80%;
+    box-shadow: 0px 0px 5px black;
+}
+
+.navigation-profil h6,p {
+    text-align: left;
+}
+
+.navigation-profil h6 {
+    border-bottom: #000 1px solid; 
+}
+
+.navigation-profil img {
+    width: 80%;
+    border: #333 1px solid; 
+}
+
+.agent-title {
+    grid-column-end: 3;
+    grid-column-start: 1;
+}
+
+.navigation-profil-text {
+    padding: 10%;
 }

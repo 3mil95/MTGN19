@@ -1,0 +1,21 @@
+.mode_btn {
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(192, 189, 189); /* Gray */
+  transition-duration: 0.4s;
+  padding: 10px;
+  margin-right: 5px; 
+
+}
+
+.mode_btn:hover {
+    background-color: rgba(116, 116, 116, 0); /* Gray */
+    border-radius: 4px;
+    color: white;
+  }
+
+.selected_btn {
+    background-color: rgb(116, 116, 116); /* Gray */
+    color: white;
+
+}

@@ -49,6 +49,8 @@ def edit_event(filter, data):
         if g.user.admin:
             if "name" in data:
                 type.name = data["name"]
+                if "datetime" in data:
+                    type.datetime = datetime.strptime(data["datetime"], "%Y-%m-%d %H:%M")
         else:
             return jsonify({"message": "unauthorized"}), 401
     db.session.commit()

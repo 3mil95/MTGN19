@@ -4,14 +4,14 @@ from PIL import Image as Img
 from flask import jsonify, g
 import os, uuid
 
-def upload_profile_picture(image, username):
+def upload_profile_picture(image, id):
     ALLOWED_EXTENTIONS = ['.png', '.jpg', '.jpeg'] 
     original_filename, extension = os.path.splitext(image.filename)
     filename = str(uuid.uuid4()) + extension
     if extension in ALLOWED_EXTENTIONS:
         path = os.path.join("static", "images", "profiles", filename)
         local_path = os.path.join(os.getcwd(), path)
-        user = User.query.filter(User.username == username).first()
+        user = User.query.filter(User.id == id).first()
         print(user)
         image.save(local_path)
         user.profile_picture = resize_profile_picture(local_path, filename)

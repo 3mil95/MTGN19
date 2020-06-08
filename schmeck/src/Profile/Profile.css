@@ -1,0 +1,351 @@
+#TheCanvas {
+  background-color: #333;
+  transform-origin: center center;
+  margin: auto;
+}
+
+/*.profile_site {
+  background: url("https://www.w3schools.com/cssref/mountain.jpg") no-repeat; background-size: cover;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}*/
+
+.conf_img {
+  margin-top: -20px;
+}
+
+.finger_prints {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.finger_prints img{
+  width: 30%;
+}
+
+.profile-page {
+  padding: 40px 50px;
+}
+
+.profile-text-divider {
+  padding: 2%;
+  border-bottom: #000 1px solid;
+}
+
+.profile-box input[type="password"], .profile-box input[type="text"] {
+  background: #fff;
+  border: none;
+  border-bottom: #000 1px solid;
+  align-content: left;
+
+}
+
+.profile-box input[type="text"] {
+  width: 100%;
+}
+
+.profile-button-contaner {
+  display: grid;
+  width: 100%;
+  /*justify-content: space-between;*/
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 2% 0%;
+}
+
+.profile-button-1 {
+  width: 50%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.profile-button-2 {
+  display: flex;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  text-align: center;
+}
+
+.profile-button-3 {
+  width: 50%;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  margin-left: 50%
+}
+
+.profile-button {
+  /*position: fixed;
+  rihgt: 0px;
+  transform-origin: center center;
+  width: 5%;
+  top: 50%;*/
+  font-size: 15px;
+  padding: 5px;
+  background: none;
+  border: none;
+  border: #000 1px solid;
+  z-index: 1;
+  border-radius: 2px; 
+}
+
+.prev-button {
+  /*position: fixed;
+  left: 0px;
+  transform-origin: center center;
+  width: 5%;
+  top: 50%;*/
+  height: 30px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  border: #000 1px solid;
+  z-index: 1;
+  border-radius: 20%; 
+}
+
+.password-form {
+  box-shadow: 0 0 5px black;
+  padding: 10px 0px
+}
+
+.profile-contaner-flyin-left {
+  animation: left-flyin 0.2s forwards;
+}
+
+.profile-contaner-flyut-left {
+  animation: left-flyin 0.2s reverse backwards;
+}
+
+.profile-contaner-flyin-rigth {
+  animation: rigth-flyin 0.2s forwards;
+}
+
+.profile-contaner-flyut-rigth {
+  animation: rigth-flyin 0.2s reverse forwards;
+}
+
+.profile-contaner {
+  /*animation: left-fly 0.2s forwards;*/
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+  padding: 10px 20px 30px 20px;
+  border-radius: 10px;
+  background: #b98d44;
+  min-height: 1000px;
+}
+
+.profile-box {
+  padding: 0px 20px 30px 20px;
+  min-height: 1500px;
+  background: #fff;
+}
+
+.profile-top-img {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+
+.profile-box h4 {
+  text-align: left;
+}
+
+
+
+.rsa {
+  border-top: 30px solid red !important;
+}
+
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 10; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  border-top: 30px solid #179167;
+  border-radius: 5px;
+  animation: popup 0.2s forwards;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal-content p {
+  text-align: center;
+  padding: 15px
+}
+
+.yes-btn, .no-btn {
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.yes-btn {
+  background-color: #4CAF50; /* Green */
+  border: 2px solid #4CAF50; /* Green */
+}
+
+.no-btn {
+  background-color: #f44336; /* Green */
+  border: 2px solid #f44336; /* Green */
+}
+
+.no-btn:hover, .yes-btn:hover {
+  color: #000;
+  background: #fff;
+}
+
+.rsa_logga {
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+
+@keyframes popup {
+  0% {transform: scale(0)}
+  90% {transform: scale(1.2)}
+  100% {transform: scale(1)}
+}
+
+
+@keyframes left-fly {
+  0% {transform: translateX(-1000px)}
+  90% {transform: translateX(-100px)}
+  100% {transform: translateX(0px)}
+}
+
+@keyframes right-fly {
+  0% {transform: translateX(-1000px)}
+  90% {transform: translateX(-100px)}
+  100% {transform: translateX(0px)}
+}
+
+
+.arrow {
+	position: fixed;
+	top: 50%;
+	width: 3vmin;
+	height: 3vmin;
+	background: transparent;
+	border-top: 1vmin solid white;
+	border-right: 1vmin solid white;
+	box-shadow: 0 0 0 lightgray;
+  transition: all 200ms ease;
+}
+	
+	.left {
+		left: 15%;
+		transform: translate3d(0,-50%,0) rotate(-135deg);
+	}
+
+	.right {
+		right: 15%;
+		transform: translate3d(0,-50%,0) rotate(45deg);
+	}
+	
+	.arrow:hover {
+		border-color: orange;
+		box-shadow: 0.5vmin -0.5vmin 0 white;
+	}
+	
+	.arrow:before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-40%,-60%) rotate(45deg);
+		width: 200%;
+		height: 200%;
+	}
+
+  @media (max-width: 1220px) {
+    .left {
+      left: 10%;	
+    }
+  
+    .right {
+      right: 10%;
+    }
+  }
+
+  .prof_img {
+    padding: 10px;
+    padding-bottom: 50px;
+    box-shadow: 0px 0px 5px black;
+    width: 70%;
+    margin: auto;
+  }
+  .RSA_profile {
+    font-family: 'tw';
+    color: #000;
+  }
+
+  @media (max-width: 720px) {
+    .profile-top-img {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      display: block;
+    }
+
+    
+  
+    .profile-img {
+      /*padding: 5px 5px 10px 5px;*/
+    }
+  
+    .profile-contaner {
+      padding: 10px 10px 20px 10px;
+      min-height: 400px;
+    }
+  
+    .profile-box {
+      min-height: 400px;
+    }
+  
+    .profile-page {
+      padding: 20px 0px 0px 0px;
+    }
+
+    .left {
+      left: 5%;
+    }
+
+    .right {
+      right: 5%;
+    }
+
+    .conf_img {
+      display: none;
+    }
+  
+    .prof_img {
+      margin:auto;
+      width: 50%;
+      padding: 5px;
+      padding-bottom: 30px;
+    }
+  
+  }
+
+  

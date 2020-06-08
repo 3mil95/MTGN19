@@ -24,6 +24,20 @@ STATIC_DIR = os.path.join(os.getcwd(), "static")
 def index(path):
     return send_from_directory(os.getcwd(), "index.html")
 
+"""
+@app.route("asset-manifest.json")
+def asset_manifest():
+    return send_from_directory(os.getcwd(), "asset_manifest.json")
+
+@app.route("favicon.ico")
+def favicon():
+    return send_from_directory(os.getcwd(), "favicon.ico")
+
+@app.route("<file>.js")
+def service_worker(file):
+    return send_from_directory(os.getcwd(), file + ".js")
+"""
+
 # På servern är det bättre att en "riktig" web server som Nginx sköter statiska filer
 if app.config["DEBUG"]:
     #ladda CSS
@@ -63,15 +77,20 @@ if app.config["DEBUG"]:
     def get_uploads(file_path):
         return send_from_directory(os.path.join(STATIC_DIR, "uploads"), file_path)
 
-@app.route("/api/blandaren", methods = ["GET", "POST"])
+@app.route("/api/blandaren", methods = ["GET", "POST", "DELETE"])
 def blandar_route():
+    id = request.args.get("id")
     if request.method == "POST":
         document_functions.upload_document(request)
         return jsonify({"message":"fil(er) laddades upp!"}), 200
     if request.method == "GET":
         document_response = document_functions.get_documents()
-        print(document_response)
+        #print(document_response)
         return jsonify(document_response), 200
+    if request.method == "DELETE":
+        document_functions.delete_document(id)
+        return jsonify({"Message":"Bländaren raderades!"}), 200
+
 
 @app.route("/api/media/", methods = ["GET", "POST", "DELETE"]) #Hämta media eller ladda upp media
 def media_path():
@@ -170,13 +189,13 @@ def user_group_route():
     elif request.method == "PUT":
         return user_functions.edit_group(request.args, request.json)
 
-@app.route("/api/upload_profile_picture/<username>", methods=["POST"])
+@app.route("/api/upload_profile_picture/<id>", methods=["POST"])
 @requires_auth_token
-def profile_picture_route(username):
+def profile_picture_route(id):
     if g.user.admin:
         if "image" in request.files:
             image = request.files["image"]
-            res = user_functions.upload_profile_picture(image, username)
+            res = user_functions.upload_profile_picture(image, id)
             return res
         else:
             return jsonify({"message": "invalid"}), 400

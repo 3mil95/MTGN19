@@ -1,0 +1,10 @@
+.footer {
+border-top: #179167 20px solid;
+    background: #fff;
+    width: 100% -20px;
+    padding: 10px;
+}
+
+.footer-linck {
+    margin: 10px;
+}

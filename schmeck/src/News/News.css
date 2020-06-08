@@ -1,0 +1,90 @@
+.news-contaner {
+    border-radius: 2px; 
+    background: url('https://www.toptal.com/designers/subtlepatterns/patterns/paper.png');
+
+    padding: 10px;
+    margin: 20px;
+}
+
+.news-heder {
+    font-size: 150%;
+    font-weight: 9000;
+    /*border-top: #000 solid 5px;*/
+    border-bottom: #000 solid 2px;
+    margin: 0px 2%;
+}
+
+.news-date {
+    display: flex;
+    margin: 0px 2%;
+    width: 96%;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: #000 solid 2px;
+}
+@media (max-width: 720px) {
+    .news-date {
+        display: block;
+    }
+    .news-heder {
+        font-size: 110%;
+    }
+}
+.ql-align-center {
+    text-align: center;
+}
+
+.ql-size-huge{
+    font-size: 40px
+}
+
+.ql-size-large{
+    font-size: 30px
+}
+
+.ql-size-small{
+    font-size: 10px
+}
+
+.ql-align-right {
+    text-align: right;
+}
+
+.news-text ol {
+    display: block;
+    list-style-type: decimal;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+}
+
+
+
+.news-text ul {
+    display: block;
+    list-style-type: disc;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+}
+
+
+.news-text {
+    text-align: left;
+    padding: 3%
+}
+
+.news-text img {
+    max-width: 96%;
+    padding: 2%
+}
+
+.ql-video {
+    width: 96%;
+    height: 100%;
+    padding: 2%
+}
